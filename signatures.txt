@@ -1,0 +1,18 @@
+AH-ItemArray Struct : e2 08 ?? ?? ?? ?? 20 6f ce
+51 13 08 ?? ?? ?? ?? 48
+
++0x08 - Array.Length
++0x0C - Array.MaxLength
++0x1C - Array contents
+	+0x28+n*0x50 nth element
+
+
+
+4 byte - Loaded items:
+4 byte - Total items:
+
+
+
+8301340
+
+3FB5

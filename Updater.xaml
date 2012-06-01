@@ -1,0 +1,27 @@
+﻿<Window x:Class="CampahApp.Updater"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:CampahApp"
+        DataContext="{Binding Source={x:Static local:UpdateData.Instance}}"
+        Title="{Binding Name}" Height="280" Width="384" Loaded="MainContainer_Loaded" Closed="Window_Closed" Icon="/Campah;component/update.ico">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition Height ="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <GroupBox Grid.ColumnSpan="2" Header="Notes">
+            <TextBox Text="{Binding Comment}" VerticalScrollBarVisibility="Auto" />
+        </GroupBox>
+        <GroupBox Grid.Row="1" Grid.ColumnSpan="2" Header="Status">
+            <TextBox Name="tb_update" Text="{Binding Status}" VerticalScrollBarVisibility="Auto" TextChanged="TextBox_TextChanged" />
+        </GroupBox>
+        <Grid Grid.Row="3">
+            <CheckBox Name="cb_closewhencomplete" Content="Close when completed" IsChecked="false" HorizontalAlignment="Right" Margin="10,5" />
+            <Button Content="Finish" Width="50" Height="Auto" Margin="10,5" HorizontalAlignment="Left" IsEnabled="{Binding Completed}" Click="button_Click" />
+        </Grid>
+    </Grid>
+</Window>
