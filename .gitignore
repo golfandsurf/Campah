@@ -1,2 +1,6 @@
 
 .DS_Store
+obj/
+bin/
+Campah.sln
+Campah.suo

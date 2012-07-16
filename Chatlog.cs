@@ -126,6 +126,7 @@ namespace CampahApp
         private void addline(FFACE.ChatTools.ChatLine line)
         {
             Paragraph para = new Paragraph();
+            //AuctionHouse.SetProcessMemoryReader();
             para = ProcessLine(line, para);
             if (para != null)
                 chatlog.Blocks.Add(para);

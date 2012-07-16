@@ -580,7 +580,7 @@ namespace CampahApp
         {
             if (!ffxiah_button.Focusable)
                 ThreadManager.threadRunner(lookupPriceXIAH);
-        }        
+        }
     }
 
     public static class FFACE_INSTANCE
