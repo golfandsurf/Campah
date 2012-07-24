@@ -40,8 +40,8 @@ namespace CampahApp
         public const String BIDVAL_SIG = "8b0d????????33c084db";
         public const int BIDVAL_OFFSET = 0x28;
 
-        public const String MENU_SIG = "01b9????????e80419"; //"51a1????????563bc1753a";
-        public const int MENU_OFFSET = 0x54;
+        public const String MENU_SIG = "583d????????410888"; //"01b9????????e80419"; //"51a1????????563bc1753a";
+        public const int MENU_OFFSET = 0x32;
         public const int MENU_INDEX_OFFSET = 0x4C;
         public const int MENU_LENGTH_OFFSET = 0x58;
     }
@@ -634,6 +634,14 @@ namespace CampahApp
                 CampahStatus.Instance.Status = "Signature Failed";
             return pointer;
         }
+        
+        private static IntPtr sigscan(string sig, bool readloc)
+        {
+            IntPtr pointer = Preader.FindSignature(sig, false);
+            if (pointer == IntPtr.Zero)
+                CampahStatus.Instance.Status = "Signature Failed";
+            return pointer;
+        }
 
         public static void SetProcessMemoryReader()
         {
@@ -642,7 +650,10 @@ namespace CampahApp
 
             for (int i = 0; i < Constants.AH_OFFSETS.Length; i++)
                 AhStructPointer = readPointer(pointer, Constants.AH_OFFSETS[i]);
-            MenuStructPointer = (IntPtr)((int)sigscan(Constants.MENU_SIG) + Constants.MENU_OFFSET);
+            IntPtr pointer2 = sigscan(Constants.MENU_SIG, false);
+//            String pstr = ((int)pointer2).ToString("X4");
+//            IntPtr pointer3 = sigscan(pstr.Substring(6) + pstr.Substring(4, 2) + pstr.Substring(2, 2) + pstr.Substring(0, 2));
+            MenuStructPointer = (IntPtr)((int)pointer2 + Constants.MENU_OFFSET);
             BidValPointer = (IntPtr)((int)readPointer(sigscan(Constants.BIDVAL_SIG),0));
         }
 

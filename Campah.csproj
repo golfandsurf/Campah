@@ -182,6 +182,9 @@
     <Resource Include="ffacetools\ChangeLog.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="ahresources.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="FFACE.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

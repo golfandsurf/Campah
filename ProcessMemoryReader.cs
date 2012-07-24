@@ -238,7 +238,7 @@ namespace PandyProductions
             ProcessModuleCollection progMods = m_ReadProcess.Modules;
             foreach (ProcessModule module in progMods)
             {
-                if (module.ModuleName == ReadProcess.MainModule.ModuleName)
+                if (module.ModuleName == "FFXiMain.dll")//ReadProcess.MainModule.ModuleName)
                 {
                     m_hbase = module.BaseAddress;
                     break;
