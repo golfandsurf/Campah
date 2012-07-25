@@ -40,10 +40,10 @@ namespace CampahApp
         public const String BIDVAL_SIG = "8b0d????????33c084db";
         public const int BIDVAL_OFFSET = 0x28;
 
-        public const String MENU_SIG = "583d????????410888"; //"01b9????????e80419"; //"51a1????????563bc1753a";
-        public const int MENU_OFFSET = 0x32;
-        public const int MENU_INDEX_OFFSET = 0x4C;
-        public const int MENU_LENGTH_OFFSET = 0x58;
+        //public const String MENU_SIG = "583d????????410888"; //"01b9????????e80419"; //"51a1????????563bc1753a";
+        //public const int MENU_OFFSET = 0x32;
+        //public const int MENU_INDEX_OFFSET = 0x4C;
+        //public const int MENU_LENGTH_OFFSET = 0x58;
     }
 
     public class AHTarget
@@ -566,13 +566,14 @@ namespace CampahApp
             
             get
             {
-                return read2bytes(readPointer(MenuStructPointer, 0), Constants.MENU_INDEX_OFFSET);
+                return FFACE_INSTANCE.Instance.Menu.MenuIndex;//read2bytes(readPointer(MenuStructPointer, 0), Constants.MENU_INDEX_OFFSET);
             }
             set
             {
-                SetProcessMemoryReader();
-                int byteswritten;
-                Preader.WriteProcessMemory((IntPtr)((int)readPointer(MenuStructPointer, 0) + Constants.MENU_INDEX_OFFSET), BitConverter.GetBytes(Convert.ToInt32(value)), out byteswritten);
+                //SetProcessMemoryReader();
+                //int byteswritten;
+                //Preader.WriteProcessMemory((IntPtr)((int)readPointer(MenuStructPointer, 0) + Constants.MENU_INDEX_OFFSET), BitConverter.GetBytes(Convert.ToInt32(value)), out byteswritten);
+                FFACE_INSTANCE.Instance.Menu.MenuIndex = value;
             }
         }
 
@@ -580,7 +581,7 @@ namespace CampahApp
         {
             get
             {
-                return read2bytes(readPointer(MenuStructPointer, 0), Constants.MENU_LENGTH_OFFSET) - 1;
+                return 0; //read2bytes(readPointer(MenuStructPointer, 0), Constants.MENU_LENGTH_OFFSET) - 1;
             }
         }
 
@@ -650,10 +651,11 @@ namespace CampahApp
 
             for (int i = 0; i < Constants.AH_OFFSETS.Length; i++)
                 AhStructPointer = readPointer(pointer, Constants.AH_OFFSETS[i]);
-            IntPtr pointer2 = sigscan(Constants.MENU_SIG, false);
+//            IntPtr pointer2 = sigscan(Constants.MENU_SIG, false);
+//            BidValue = 1000;
 //            String pstr = ((int)pointer2).ToString("X4");
 //            IntPtr pointer3 = sigscan(pstr.Substring(6) + pstr.Substring(4, 2) + pstr.Substring(2, 2) + pstr.Substring(0, 2));
-            MenuStructPointer = (IntPtr)((int)pointer2 + Constants.MENU_OFFSET);
+//            MenuStructPointer = (IntPtr)((int)pointer2 + Constants.MENU_OFFSET);
             BidValPointer = (IntPtr)((int)readPointer(sigscan(Constants.BIDVAL_SIG),0));
         }
 

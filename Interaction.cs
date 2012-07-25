@@ -26,6 +26,7 @@ namespace CampahApp
             return AuctionHouse.ReadIDArray();
         }
 
+        //Will Not Work until MenuLength is restored and a resource parsing method restored.
         public bool TraverseMenu(String address)
         {
             GotoMenu(address);
@@ -84,7 +85,7 @@ namespace CampahApp
             for (int i = CurrentAddress.Count; i < adr.Length; i++)
             {
                 String helptxt = FFACE_INSTANCE.Instance.Menu.Selection;
-                if (helptxt != "Bid" && AuctionHouse.MenuLength >= adr[i])
+                if (helptxt != "Bid")// && AuctionHouse.MenuLength >= adr[i])
                 {
                     CurrentAddress.Push(adr[i]);
                     AuctionHouse.MenuIndex = adr[i];

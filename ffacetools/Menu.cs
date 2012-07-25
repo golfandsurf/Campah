@@ -55,6 +55,19 @@ namespace FFACETools {
 
 			}
 
+            public int MenuIndex
+            {
+                get
+                {
+                    return GetMenuIndex(_InstanceID);
+                }
+                set
+                {
+                    SetMenuIndex(_InstanceID, value);
+                }
+
+            }
+
 			///<summary>
 			/// Returns the selected option index
 			///</summary>

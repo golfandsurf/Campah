@@ -327,9 +327,14 @@ namespace FFACETools {
 		private static extern short GetDialogIndex(int instanceID);
 		[DllImport(FFACE_LIBRARY, CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true, CallingConvention=CallingConvention.Cdecl)]
 		private static extern int GetDialogIndexCount(int instanceID);
-		[DllImport(FFACE_LIBRARY, CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true, CallingConvention=CallingConvention.Cdecl)]
-		private static extern short GetDialogID(int instanceID);
-		#endregion
+        [DllImport(FFACE_LIBRARY, CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        private static extern short GetDialogID(int instanceID);
+        [DllImport(FFACE_LIBRARY, CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        private static extern int GetMenuIndex(int instanceID);
+        [DllImport(FFACE_LIBRARY, CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true, CallingConvention = CallingConvention.Cdecl)]
+        private static extern bool SetMenuIndex(int instanceID, int index);
+
+        #endregion
 
 		#region Search Imports
 

@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Reflection;
 using System.Net;
 using System.ComponentModel;
 using System.Xml;
@@ -39,7 +40,9 @@ namespace CampahApp
         public MainWindow()
         {
             InitializeComponent();
-            
+            int[] REQUIRE_FFACE_VER = { 4, 1, 0, 24 };
+
+
             this.Height = Properties.Settings.Default.WindowSize.Height;
             this.Width = Properties.Settings.Default.WindowSize.Width;
             this.Top = Properties.Settings.Default.WindowLocation.Y;
@@ -49,7 +52,16 @@ namespace CampahApp
             settingsManager.loadSettingsXML();
             if (CampahStatus.Instance.AutomaticUpdates && (App.mArgs.Length == 0 || App.mArgs[0] != "updated"))
             {
-                CheckUpdate();
+                //CheckUpdate();  //No longer supported
+            }
+            String[] ffacever = FileVersionInfo.GetVersionInfo("FFACE.dll").FileVersion.Split(',');
+            for (int i = 0; i < ffacever.Length; i++)
+            {
+                if(int.Parse(ffacever[i]) < REQUIRE_FFACE_VER[i])
+                {
+                    MessageBox.Show("Campah Requires FFACE.dll version 4.1.0.24 or higher.  Please download the latest version from ffevo forums");
+                    Application.Current.Shutdown();
+                }
             }
             if (File.Exists("Updater.exe"))
                 File.Delete("Updater.exe");
