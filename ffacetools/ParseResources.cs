@@ -774,7 +774,8 @@ namespace FFACETools {
 							if (type == FileTypes.SpellNames)
 								ResourcesCache.Add((int)((uint)(i * 2) | (uint)rb), s);
 							else
-								ResourcesCache.Add((int)((uint)i | (uint)rb), s);
+								if (!ResourcesCache.ContainsKey((int) ((uint) i | (uint) rb)))
+                                    ResourcesCache.Add((int) ((uint) i | (uint) rb), s);
 						}
 					}
 				}

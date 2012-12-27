@@ -27,23 +27,26 @@ namespace CampahApp
     //put literals here. It's a work in progress...
     public static class Constants
     {
-        public const String AH_SIG = "39 1D ?? ?? ?? ?? 75 22 6A 24 E8";
-        public static int[] AH_OFFSETS = {-532};
-        public const int AH_OFFSET_ARRAYUNIQUELENGTH = 0x22;
-        public const int AH_OFFSET_ARRAYLOADED = 0x20;
-        public const int AH_OFFSET_ARRAYSTRUCT = 0x38;
-        public const int AH_OFFSET_FIRSTITEMID = 0x28;
-        public const int AH_OFFSET_ITEMID_INCREMENT = 0x50;
+        public const String BIDVAL_SIG = "8b0d????????33c084db";
+        public const int BIDVAL_OFFSET = 0x28;
+        
+        //public const String AH_SIG = "A3 ?? ?? ?? ?? EB 06 89 1D ?? ?? ?? ?? 39 1D ?? ?? ?? ?? 75 22 6A 24 E8"; //h1pp0 sig
+        public const String AH_SIG = "8B 35 ?? ?? ?? ?? 3B F7 74 2C 8B 46 1C";  //"XX 90 F1 XX XX ?? ?? ?? ?? 70 42";
+        public const bool READ_LOC = false;
+        public static int[] AH_OFFSETS = {0,0};
+        public const int AH_OFFSET_ARRAYUNIQUELENGTH = 0x0C;
+        public const int AH_OFFSET_ARRAYLOADED = 0x08;
+        public const int AH_OFFSET_ARRAYSTRUCT = 0x20;
+        public const int AH_OFFSET_FIRSTITEMID = 0x4;
+        public const int AH_OFFSET_ITEMID_INCREMENT = 0x40;
 
         public const String CAMPAH_EXTENSION = "Campah Save Files (*.chs)|*.chs";
 
-        public const String BIDVAL_SIG = "8b0d????????33c084db";
-        public const int BIDVAL_OFFSET = 0x28;
-
-        //public const String MENU_SIG = "583d????????410888"; //"01b9????????e80419"; //"51a1????????563bc1753a";
+        //public const String MENU_SIG = "51A1????????5685c0752BA1";//"583d????????410888"; //"01b9????????e80419"; //"51a1????????563bc1753a";
         //public const int MENU_OFFSET = 0x32;
-        //public const int MENU_INDEX_OFFSET = 0x4C;
+        public const int MENU_INDEX_OFFSET = 0x4C;
         //public const int MENU_LENGTH_OFFSET = 0x58;
+        public const int MENU_LENGTH_OFFSET = 0x5A;
     }
 
     public class AHTarget
@@ -549,15 +552,17 @@ namespace CampahApp
         {
             get
             {
-                int m = (int)BidValPointer;
+                //int m = (int)BidValPointer;
                 if (BidValPointer == IntPtr.Zero)
                     SetProcessMemoryReader();
                 return read2bytes(BidValPointer, Constants.BIDVAL_OFFSET);
             }
             set
             {
+                if (BidValPointer == IntPtr.Zero)
+                    SetProcessMemoryReader();
                 int byteswritten;
-                preader.WriteProcessMemory((IntPtr)((int)BidValPointer+Constants.BIDVAL_OFFSET), BitConverter.GetBytes(value), out byteswritten);
+                preader.WriteProcessMemory((IntPtr)( (int)BidValPointer + Constants.BIDVAL_OFFSET ), BitConverter.GetBytes(value), out byteswritten);
             }
         } 
 
@@ -630,7 +635,7 @@ namespace CampahApp
 
         private static IntPtr sigscan(string sig)
         {
-            IntPtr pointer = Preader.FindSignature(sig, true);
+            IntPtr pointer = Preader.FindSignature(sig, Constants.READ_LOC);
             if (pointer == IntPtr.Zero)
                 CampahStatus.Instance.Status = "Signature Failed";
             return pointer;
@@ -638,7 +643,7 @@ namespace CampahApp
         
         private static IntPtr sigscan(string sig, bool readloc)
         {
-            IntPtr pointer = Preader.FindSignature(sig, false);
+            IntPtr pointer = Preader.FindSignature(sig, readloc);
             if (pointer == IntPtr.Zero)
                 CampahStatus.Instance.Status = "Signature Failed";
             return pointer;
@@ -649,14 +654,17 @@ namespace CampahApp
             preader = new ProcessMemoryReader(CampahStatus.Instance.process.Id);
             IntPtr pointer = sigscan(Constants.AH_SIG);//+Constants.AH_OFFSETS[0];
 
+            
             for (int i = 0; i < Constants.AH_OFFSETS.Length; i++)
-                AhStructPointer = readPointer(pointer, Constants.AH_OFFSETS[i]);
+                pointer = readPointer(pointer, Constants.AH_OFFSETS[i]);
+
+            AhStructPointer = pointer;
 //            IntPtr pointer2 = sigscan(Constants.MENU_SIG, false);
 //            BidValue = 1000;
 //            String pstr = ((int)pointer2).ToString("X4");
 //            IntPtr pointer3 = sigscan(pstr.Substring(6) + pstr.Substring(4, 2) + pstr.Substring(2, 2) + pstr.Substring(0, 2));
 //            MenuStructPointer = (IntPtr)((int)pointer2 + Constants.MENU_OFFSET);
-            BidValPointer = (IntPtr)((int)readPointer(sigscan(Constants.BIDVAL_SIG),0));
+            BidValPointer = readPointer(readPointer(sigscan(Constants.BIDVAL_SIG),0),0);
         }
 
         private static IntPtr ArrayPointer

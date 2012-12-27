@@ -40,14 +40,18 @@ namespace CampahApp
         }
 
         private void loadList()
-        {            
-            Process[] ps = Process.GetProcessesByName("pol");
+        {
+            String[] processTitles = {"pol", "ffxi-boot"};
             List<Process> p = new List<Process>();
-            foreach (Process process in ps)
+            foreach (String processTitle in processTitles)
             {
-                if (!Regex.IsMatch(process.MainWindowTitle, "(Final Fantasy XI)|(PlayOnline)"))
+                Process[] ps = Process.GetProcessesByName(processTitle);
+                foreach (Process process in ps)
                 {
-                    p.Add(process);
+                    if (!Regex.IsMatch(process.MainWindowTitle, "(Final Fantasy XI)|(PlayOnline)"))
+                    {
+                        p.Add(process);
+                    }
                 }
             }
             this.processes = p.ToArray();
