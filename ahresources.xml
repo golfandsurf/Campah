@@ -109,6 +109,7 @@
   <item id="446B" name="Hydro Claws +1" stackable="False" address="1,1,1" />
   <item id="446C" name="Hydro Patas" stackable="False" address="1,1,1" />
   <item id="446D" name="Hydro Patas +1" stackable="False" address="1,1,1" />
+  <item id="446E" name="Manoples +1" stackable="False" address="1,1,1" />
   <item id="446F" name="Platoon Cesti" stackable="False" address="1,1,1" />
   <item id="47AE" name="Tourney Patas" stackable="False" address="1,1,1" />
   <item id="47AF" name="Meteor Cesti" stackable="False" address="1,1,1" />
@@ -315,6 +316,7 @@
   <item id="466A" name="Magnet Knife" stackable="False" address="1,1,2" />
   <item id="466D" name="Piercing Dagger" stackable="False" address="1,1,2" />
   <item id="466E" name="Khimaira Jambiya" stackable="False" address="1,1,2" />
+  <item id="466F" name="Amir Jambiya" stackable="False" address="1,1,2" />
   <item id="4670" name="Adder Jambiya" stackable="False" address="1,1,2" />
   <item id="4671" name="Adder Jambiya +1" stackable="False" address="1,1,2" />
   <item id="4673" name="Deathbone Knife" stackable="False" address="1,1,2" />
@@ -473,6 +475,7 @@
   <item id="44E5" name="Wing Sword +1" stackable="False" address="1,1,3" />
   <item id="44E6" name="Katzbalger +1" stackable="False" address="1,1,3" />
   <item id="44E7" name="Cutlass +1" stackable="False" address="1,1,3" />
+  <item id="44E8" name="Ptm. Cutlass +1" stackable="False" address="1,1,3" />
   <item id="44E9" name="Gold Sword +1" stackable="False" address="1,1,3" />
   <item id="44EA" name="Hanger +1" stackable="False" address="1,1,3" />
   <item id="44ED" name="Espadon +1" stackable="False" address="1,1,3" />
@@ -619,7 +622,9 @@
   <item id="47BE" name="Gust Claymore" stackable="False" address="1,1,4" />
   <item id="47BF" name="Gust Claymore +1" stackable="False" address="1,1,4" />
   <item id="47C0" name="Gust Sword" stackable="False" address="1,1,4" />
+  <item id="47C1" name="Gust Sword +1" stackable="False" address="1,1,4" />
   <item id="47C2" name="Gust Tongue" stackable="False" address="1,1,4" />
+  <item id="47C3" name="Gust Tongue +1" stackable="False" address="1,1,4" />
   <item id="47C4" name="Balan's Sword" stackable="False" address="1,1,4" />
   <item id="47C5" name="Balin's Sword" stackable="False" address="1,1,4" />
   <item id="47C6" name="Mighty Sword" stackable="False" address="1,1,4" />
@@ -648,6 +653,11 @@
   <item id="4AE5" name="Gram" stackable="False" address="1,1,4" />
   <item id="4AE9" name="Etourdissante" stackable="False" address="1,1,4" />
   <item id="4AEA" name="Etourdissante +1" stackable="False" address="1,1,4" />
+  <item id="5124" name="Voay Sword -1" stackable="False" address="1,1,4" />
+  <item id="5125" name="Voay Sword" stackable="False" address="1,1,4" />
+  <item id="5126" name="Voay Sword +1" stackable="False" address="1,1,4" />
+  <item id="512B" name="Senbaak Nagan" stackable="False" address="1,1,4" />
+  <item id="512F" name="Uruz Blade" stackable="False" address="1,1,4" />
   <item id="5131" name="Thurisaz Blade" stackable="False" address="1,1,4" />
   <item id="5132" name="Thurisaz Blade +1" stackable="False" address="1,1,4" />
   <item id="5134" name="Hatzoaar Sword +1" stackable="False" address="1,1,4" />
@@ -813,7 +823,9 @@
   <item id="4859" name="Dies Irae" stackable="False" address="1,1,6" />
   <item id="485A" name="Firnaxe" stackable="False" address="1,1,6" />
   <item id="485B" name="Firnaxe +1" stackable="False" address="1,1,6" />
+  <item id="518A" name="Razorfury" stackable="False" address="1,1,6" />
   <item id="518E" name="Nohkux Axe" stackable="False" address="1,1,6" />
+  <item id="518F" name="Nohkux Axe +1" stackable="False" address="1,1,6" />
   <item id="4180" name="Bronze Zaghnal" stackable="False" address="1,1,7" />
   <item id="4181" name="Brass Zaghnal" stackable="False" address="1,1,7" />
   <item id="4182" name="Zaghnal" stackable="False" address="1,1,7" />
@@ -870,6 +882,7 @@
   <item id="487D" name="Sortilege Scythe" stackable="False" address="1,1,7" />
   <item id="4880" name="Nirastamo" stackable="False" address="1,1,7" />
   <item id="4881" name="Yhatdhara" stackable="False" address="1,1,7" />
+  <item id="4882" name="Yhatdhara +1" stackable="False" address="1,1,7" />
   <item id="49FD" name="Naigama" stackable="False" address="1,1,7" />
   <item id="4A01" name="Jet Sickle" stackable="False" address="1,1,7" />
   <item id="4A02" name="Fourth Zaghnal" stackable="False" address="1,1,7" />
@@ -925,6 +938,7 @@
   <item id="41E6" name="Envy Spear" stackable="False" address="1,1,8" />
   <item id="41E7" name="Kamayari" stackable="False" address="1,1,8" />
   <item id="41E8" name="Kamayari +1" stackable="False" address="1,1,8" />
+  <item id="41E9" name="Wyvern Spear +1" stackable="False" address="1,1,8" />
   <item id="41EA" name="Partisan +1" stackable="False" address="1,1,8" />
   <item id="41EB" name="Golden Spear +1" stackable="False" address="1,1,8" />
   <item id="41EC" name="Lance +1" stackable="False" address="1,1,8" />
@@ -1088,6 +1102,7 @@
   <item id="4B60" name="Ban" stackable="False" address="1,1,9" />
   <item id="4B61" name="Kakesu" stackable="False" address="1,1,9" />
   <item id="4B63" name="Aisa" stackable="False" address="1,1,9" />
+  <item id="520E" name="Pamun" stackable="False" address="1,1,9" />
   <item id="5211" name="Nakajimarai" stackable="False" address="1,1,9" />
   <item id="5212" name="Nakajimarai +1" stackable="False" address="1,1,9" />
   <item id="5213" name="Enju" stackable="False" address="1,1,9" />
@@ -1155,6 +1170,7 @@
   <item id="4814" name="Rindomaru" stackable="False" address="1,1,10" />
   <item id="481E" name="Sasanuki" stackable="False" address="1,1,10" />
   <item id="5240" name="Tomonari" stackable="False" address="1,1,10" />
+  <item id="5241" name="Tomonari +1" stackable="False" address="1,1,10" />
   <item id="4280" name="Ash Club" stackable="False" address="1,1,11" />
   <item id="4281" name="Chestnut Club" stackable="False" address="1,1,11" />
   <item id="4282" name="Bone Cudgel" stackable="False" address="1,1,11" />
@@ -1310,6 +1326,7 @@
   <item id="49C3" name="Luckitoo" stackable="False" address="1,1,11" />
   <item id="49C4" name="Vejovis Wand" stackable="False" address="1,1,11" />
   <item id="49C5" name="Vejovis Wand +1" stackable="False" address="1,1,11" />
+  <item id="5289" name="Sharur" stackable="False" address="1,1,11" />
   <item id="528D" name="Sasah Wand +1" stackable="False" address="1,1,11" />
   <item id="528E" name="Sasah Wand" stackable="False" address="1,1,11" />
   <item id="42C0" name="Ash Staff" stackable="False" address="1,1,12" />
@@ -1437,6 +1454,13 @@
   <item id="48C8" name="Iridal Staff" stackable="False" address="1,1,12" />
   <item id="48C9" name="Chatoyant Staff" stackable="False" address="1,1,12" />
   <item id="48CA" name="Zamzummim Staff" stackable="False" address="1,1,12" />
+  <item id="52C7" name="Voay Staff -1" stackable="False" address="1,1,12" />
+  <item id="52C8" name="Voay Staff" stackable="False" address="1,1,12" />
+  <item id="52C9" name="Voay Staff +1" stackable="False" address="1,1,12" />
+  <item id="52D0" name="Atinian Staff" stackable="False" address="1,1,12" />
+  <item id="52D1" name="Atinian Staff +1" stackable="False" address="1,1,12" />
+  <item id="52D2" name="Balsam Staff" stackable="False" address="1,1,12" />
+  <item id="52D3" name="Astralwatcher" stackable="False" address="1,1,12" />
   <item id="52D6" name="Hemolele Staff" stackable="False" address="1,1,12" />
   <item id="52D7" name="Hemolele Staff +1" stackable="False" address="1,1,12" />
   <item id="4300" name="Shortbow" stackable="False" address="1,1,13" />
@@ -1628,11 +1652,12 @@
   <item id="4D20" name="Opprimo +1" stackable="False" address="1,1,13" />
   <item id="4D48" name="Lanner Bow" stackable="False" address="1,1,13" />
   <item id="4D4A" name="Nurigomeyumi" stackable="False" address="1,1,13" />
-  <item id="4D4B" name="Nurigomeyumi +1" stackable="False" address="1,1,13" />
+  <item id="52F7" name="Echidna's Bow" stackable="False" address="1,1,13" />
   <item id="52FB" name="Ahkormaar Bow" stackable="False" address="1,1,13" />
   <item id="52FC" name="Ahkormaar Bow +1" stackable="False" address="1,1,13" />
   <item id="530A" name="Malayo Crossbow" stackable="False" address="1,1,13" />
   <item id="530B" name="Malayo Crossbow +1" stackable="False" address="1,1,13" />
+  <item id="5329" name="Donderbuss" stackable="False" address="1,1,13" />
   <item id="532C" name="Bandeiras Gun" stackable="False" address="1,1,13" />
   <item id="532D" name="Bandeiras Gun +1" stackable="False" address="1,1,13" />
   <item id="535C" name="Halakaala" stackable="False" address="1,1,13" />
@@ -1704,7 +1729,7 @@
   <item id="1080" name="Demon Quiver" stackable="True" address="1,1,15,1" />
   <item id="1081" name="Iron Quiver" stackable="True" address="1,1,15,1" />
   <item id="1082" name="Silver Quiver" stackable="True" address="1,1,15,1" />
-  <item id="1083" name="B. Bolt Quiver" stackable="False" address="1,1,15,1" />
+  <item id="1083" name="B. Bolt Quiver" stackable="True" address="1,1,15,1" />
   <item id="1084" name="M. Bolt Quiver" stackable="True" address="1,1,15,1" />
   <item id="1085" name="D. Bolt Quiver" stackable="True" address="1,1,15,1" />
   <item id="14D4" name="Kabura Quiver" stackable="True" address="1,1,15,1" />
@@ -1808,18 +1833,18 @@
   <item id="4702" name="Bodkin Arrow" stackable="True" address="1,1,15,1" />
   <item id="4704" name="Goblin Grenade" stackable="False" address="1,1,15,1" />
   <item id="4705" name="Crude Arrow" stackable="False" address="1,1,15,1" />
-  <item id="4706" name="Crude Arrow +1" stackable="False" address="1,1,15,1" />
+  <item id="4706" name="Crude Arrow +1" stackable="True" address="1,1,15,1" />
   <item id="4707" name="Crude Arrow +2" stackable="True" address="1,1,15,1" />
-  <item id="4708" name="Crude Arrow +3" stackable="False" address="1,1,15,1" />
-  <item id="4709" name="Crude Arrow +4" stackable="False" address="1,1,15,1" />
+  <item id="4708" name="Crude Arrow +3" stackable="True" address="1,1,15,1" />
+  <item id="4709" name="Crude Arrow +4" stackable="True" address="1,1,15,1" />
   <item id="470A" name="Crude Arrow +5" stackable="False" address="1,1,15,1" />
   <item id="470B" name="Crude Arrow +6" stackable="True" address="1,1,15,1" />
   <item id="470C" name="Crude Arrow +7" stackable="True" address="1,1,15,1" />
   <item id="470D" name="Dogbolt" stackable="True" address="1,1,15,1" />
   <item id="470E" name="Dogbolt +1" stackable="True" address="1,1,15,1" />
-  <item id="470F" name="Dogbolt +2" stackable="False" address="1,1,15,1" />
-  <item id="4710" name="Dogbolt +3" stackable="False" address="1,1,15,1" />
-  <item id="4711" name="Dogbolt +4" stackable="False" address="1,1,15,1" />
+  <item id="470F" name="Dogbolt +2" stackable="True" address="1,1,15,1" />
+  <item id="4710" name="Dogbolt +3" stackable="True" address="1,1,15,1" />
+  <item id="4711" name="Dogbolt +4" stackable="True" address="1,1,15,1" />
   <item id="4712" name="Dogbolt +5" stackable="True" address="1,1,15,1" />
   <item id="4713" name="Antique Bullet" stackable="True" address="1,1,15,1" />
   <item id="4734" name="Battery" stackable="True" address="1,1,15,1" />
@@ -1842,7 +1867,7 @@
   <item id="4908" name="Paralysis Arrow" stackable="True" address="1,1,15,1" />
   <item id="4909" name="Marid Arrow" stackable="True" address="1,1,15,1" />
   <item id="490A" name="Water Arrow" stackable="False" address="1,1,15,1" />
-  <item id="490B" name="Earth Arrow" stackable="False" address="1,1,15,1" />
+  <item id="490B" name="Earth Arrow" stackable="True" address="1,1,15,1" />
   <item id="490C" name="Wind Arrow" stackable="True" address="1,1,15,1" />
   <item id="4913" name="Fire Bomblet" stackable="True" address="1,1,15,1" />
   <item id="4919" name="Copper Bullet" stackable="True" address="1,1,15,1" />
@@ -1859,7 +1884,7 @@
   <item id="4AFD" name="Fusion Bolt" stackable="True" address="1,1,15,1" />
   <item id="4AFE" name="Dweomer Bullet" stackable="True" address="1,1,15,1" />
   <item id="4AFF" name="Oberon's Bullet" stackable="True" address="1,1,15,1" />
-  <item id="4B00" name="Black Bolt" stackable="False" address="1,1,15,1" />
+  <item id="4B00" name="Black Bolt" stackable="True" address="1,1,15,1" />
   <item id="4B01" name="Electrum Bullet" stackable="False" address="1,1,15,1" />
   <item id="4B02" name="Smart Grenade" stackable="False" address="1,1,15,1" />
   <item id="4B0C" name="Black Tathlum" stackable="False" address="1,1,15,1" />
@@ -1899,9 +1924,13 @@
   <item id="4D59" name="Adaman Bolt" stackable="True" address="1,1,15,1" />
   <item id="4D5A" name="Orichalc. Bullet" stackable="True" address="1,1,15,1" />
   <item id="4D5B" name="Adaman Bullet" stackable="True" address="1,1,15,1" />
+  <item id="5339" name="Tulfaire Arrow" stackable="True" address="1,1,15,1" />
   <item id="533C" name="Mantid Arrow" stackable="True" address="1,1,15,1" />
   <item id="533D" name="Chapuli Arrow" stackable="True" address="1,1,15,1" />
+  <item id="5347" name="Titanium Bolt" stackable="True" address="1,1,15,1" />
+  <item id="534A" name="Damascus Bolt" stackable="True" address="1,1,15,1" />
   <item id="534B" name="Oxidant Bolt" stackable="False" address="1,1,15,1" />
+  <item id="5357" name="Titanium Bullet" stackable="True" address="1,1,15,1" />
   <item id="535A" name="Damascus Bullet" stackable="True" address="1,1,15,1" />
   <item id="535B" name="Midrium Bullet" stackable="True" address="1,1,15,1" />
   <item id="535D" name="Oreiad's Tathlum" stackable="False" address="1,1,15,1" />
@@ -2059,6 +2088,9 @@
   <item id="45F0" name="Briny Broth" stackable="True" address="1,1,15,3" />
   <item id="45F1" name="Wormy Broth" stackable="True" address="1,1,15,3" />
   <item id="45F2" name="Auroral Broth" stackable="True" address="1,1,15,3" />
+  <item id="45F3" name="Swirling Broth" stackable="True" address="1,1,15,3" />
+  <item id="45F4" name="Shimmering Broth" stackable="True" address="1,1,15,3" />
+  <item id="45F5" name="Spicy Broth" stackable="True" address="1,1,15,3" />
   <item id="4B33" name="Pet Roborant" stackable="True" address="1,1,15,3" />
   <item id="4B34" name="Pet Poultice" stackable="True" address="1,1,15,3" />
   <item id="4971" name="Danger Grip" stackable="False" address="1,1,15,4" />
@@ -2266,6 +2298,7 @@
   <item id="3F3D" name="Gleaming Shield" stackable="False" address="1,2,1" />
   <item id="3F3E" name="Bloom Buckler" stackable="False" address="1,2,1" />
   <item id="3F4A" name="Dagda's Shield" stackable="False" address="1,2,1" />
+  <item id="6FF8" name="" stackable="False" address="1,2,1" />
   <item id="6FFB" name="" stackable="False" address="1,2,1" />
   <item id="6FFC" name="" stackable="False" address="1,2,1" />
   <item id="6FFD" name="" stackable="False" address="1,2,1" />
@@ -2296,6 +2329,7 @@
   <item id="2A86" name="Kacura Cap" stackable="False" address="1,2,2" />
   <item id="2A87" name="Kacura Cap +1" stackable="False" address="1,2,2" />
   <item id="2A88" name="Sweven Corona" stackable="False" address="1,2,2" />
+  <item id="2A89" name="Sweven Corona +1" stackable="False" address="1,2,2" />
   <item id="2A8A" name="Calma Armet" stackable="False" address="1,2,2" />
   <item id="2A8B" name="Mustela Mask" stackable="False" address="1,2,2" />
   <item id="2A8C" name="Magavan Beret" stackable="False" address="1,2,2" />
@@ -2511,6 +2545,7 @@
   <item id="363D" name="Jgl. Headband" stackable="False" address="1,2,2" />
   <item id="363E" name="Arh. Jinpachi +1" stackable="False" address="1,2,2" />
   <item id="363F" name="Black Sallet" stackable="False" address="1,2,2" />
+  <item id="3640" name="Onyx Sallet" stackable="False" address="1,2,2" />
   <item id="3641" name="Bastokan Cap" stackable="False" address="1,2,2" />
   <item id="3642" name="Republic Cap" stackable="False" address="1,2,2" />
   <item id="3643" name="San d'Orian Helm" stackable="False" address="1,2,2" />
@@ -2647,6 +2682,7 @@
   <item id="2AA2" name="Muzzling Collar" stackable="False" address="1,2,3" />
   <item id="2AA3" name="Muzzling Collar +1" stackable="False" address="1,2,3" />
   <item id="2AA4" name="Pacifying Chain" stackable="False" address="1,2,3" />
+  <item id="2AA5" name="Pacifying Chain +1" stackable="False" address="1,2,3" />
   <item id="2AB1" name="Apathy Gorget" stackable="False" address="1,2,3" />
   <item id="2AB2" name="Veisa Collar" stackable="False" address="1,2,3" />
   <item id="2AB3" name="Rancor Collar" stackable="False" address="1,2,3" />
@@ -2826,6 +2862,8 @@
   <item id="3FB0" name="Focus Collar +1" stackable="False" address="1,2,3" />
   <item id="3FB4" name="Feud Pendant" stackable="False" address="1,2,3" />
   <item id="3FB5" name="Invidia Torque" stackable="False" address="1,2,3" />
+  <item id="6EF4" name="" stackable="False" address="1,2,3" />
+  <item id="6EF5" name="" stackable="False" address="1,2,3" />
   <item id="6EF6" name="" stackable="False" address="1,2,3" />
   <item id="6EF7" name="" stackable="False" address="1,2,3" />
   <item id="2820" name="Dux Scale Mail" stackable="False" address="1,2,4" />
@@ -2848,6 +2886,7 @@
   <item id="28E2" name="Gunman Gambison" stackable="False" address="1,2,4" />
   <item id="28E3" name="Pharmakeia Robe" stackable="False" address="1,2,4" />
   <item id="28FE" name="Ugol Haubert" stackable="False" address="1,2,4" />
+  <item id="28FF" name="Mavros Haubert" stackable="False" address="1,2,4" />
   <item id="2900" name="Urja Jerkin" stackable="False" address="1,2,4" />
   <item id="2901" name="Sthira Jerkin" stackable="False" address="1,2,4" />
   <item id="2902" name="Spolia Saio" stackable="False" address="1,2,4" />
@@ -3248,6 +3287,7 @@
   <item id="2914" name="Antias Mitts" stackable="False" address="1,2,5" />
   <item id="2915" name="Repartie Gloves" stackable="False" address="1,2,5" />
   <item id="2930" name="Ugol Moufles" stackable="False" address="1,2,5" />
+  <item id="2931" name="Mavros Moufles" stackable="False" address="1,2,5" />
   <item id="2932" name="Urja Gloves" stackable="False" address="1,2,5" />
   <item id="2933" name="Sthira Gloves" stackable="False" address="1,2,5" />
   <item id="2934" name="Spolia Cuffs" stackable="False" address="1,2,5" />
@@ -3274,6 +3314,7 @@
   <item id="2E87" name="Alcide's Mitts" stackable="False" address="1,2,5" />
   <item id="2E88" name="Alcide's Mitts +1" stackable="False" address="1,2,5" />
   <item id="2E89" name="Nemus Bazubands" stackable="False" address="1,2,5" />
+  <item id="2E8A" name="Nms. Bazubands +1" stackable="False" address="1,2,5" />
   <item id="2E8B" name="Nebula Cuffs" stackable="False" address="1,2,5" />
   <item id="2E8C" name="Nebula Cuffs +1" stackable="False" address="1,2,5" />
   <item id="2E8D" name="Carapacho Cuffs" stackable="False" address="1,2,5" />
@@ -3422,6 +3463,7 @@
   <item id="369F" name="Gold Bangles" stackable="False" address="1,2,5" />
   <item id="36A0" name="Gold Bangles +1" stackable="False" address="1,2,5" />
   <item id="36A1" name="Platinum Bangles" stackable="False" address="1,2,5" />
+  <item id="36A2" name="Ptm. Bangles +1" stackable="False" address="1,2,5" />
   <item id="36A3" name="Coral Bangles" stackable="False" address="1,2,5" />
   <item id="36A4" name="Merman's Bangles" stackable="False" address="1,2,5" />
   <item id="36A5" name="Dst. Gauntlets +1" stackable="False" address="1,2,5" />
@@ -3825,6 +3867,7 @@
   <item id="3E4E" name="Pythia Sash +1" stackable="False" address="1,2,6" />
   <item id="3E4F" name="Toxon Belt" stackable="False" address="1,2,6" />
   <item id="3E50" name="Toxon Belt +1" stackable="False" address="1,2,6" />
+  <item id="6F30" name="" stackable="False" address="1,2,6" />
   <item id="6F32" name="" stackable="False" address="1,2,6" />
   <item id="6F33" name="" stackable="False" address="1,2,6" />
   <item id="286A" name="Dux Cuisses" stackable="False" address="1,2,7" />
@@ -4334,6 +4377,7 @@
   <item id="358C" name="Ogre Ledelsens" stackable="False" address="1,2,8" />
   <item id="3593" name="Cpc. Leggings" stackable="False" address="1,2,8" />
   <item id="3700" name="Strider Boots" stackable="False" address="1,2,8" />
+  <item id="3701" name="Pigaches +1" stackable="False" address="1,2,8" />
   <item id="3702" name="Shn. Kyahan +1" stackable="False" address="1,2,8" />
   <item id="3703" name="Scp. Leggings +1" stackable="False" address="1,2,8" />
   <item id="3704" name="Dst. Sollerets +1" stackable="False" address="1,2,8" />
@@ -4530,6 +4574,7 @@
   <item id="2AF2" name="Chuparrosa Mantle" stackable="False" address="1,2,9" />
   <item id="2AF3" name="Zaffre Cape" stackable="False" address="1,2,9" />
   <item id="2AF4" name="Testudo Mantle" stackable="False" address="1,2,9" />
+  <item id="2AF5" name="Testudo Mantle +1" stackable="False" address="1,2,9" />
   <item id="2AF6" name="Attacker's Mantle" stackable="False" address="1,2,9" />
   <item id="2AF7" name="Dauntless Mantle" stackable="False" address="1,2,9" />
   <item id="2AF8" name="Swith Cape" stackable="False" address="1,2,9" />
@@ -4725,6 +4770,8 @@
   <item id="3F77" name="Caloyer Cape" stackable="False" address="1,2,9" />
   <item id="3F79" name="Elixir Tank" stackable="False" address="1,2,9" />
   <item id="3F81" name="Ghost Cape" stackable="False" address="1,2,9" />
+  <item id="6FE4" name="" stackable="False" address="1,2,9" />
+  <item id="6FE5" name="" stackable="False" address="1,2,9" />
   <item id="6FE6" name="" stackable="False" address="1,2,9" />
   <item id="6FE7" name="" stackable="False" address="1,2,9" />
   <item id="2838" name="Charivari Earring" stackable="False" address="1,2,10" />
@@ -4783,7 +4830,7 @@
   <item id="2DA8" name="Terra's Earring" stackable="False" address="1,2,10" />
   <item id="2DA9" name="Auster's Earring" stackable="False" address="1,2,10" />
   <item id="2DAA" name="Aquilo's Earring" stackable="False" address="1,2,10" />
-  <item id="2DAC" name="Apollo's Earring" stackable="False" address="1,2,10" />
+  <item id="2DAB" name="Neptune's Earring" stackable="False" address="1,2,10" />
   <item id="2DAD" name="Pluto's Earring" stackable="False" address="1,2,10" />
   <item id="2DAE" name="Bloodgem Earring" stackable="False" address="1,2,10" />
   <item id="2DAF" name="Volley Earring" stackable="False" address="1,2,10" />
@@ -4871,7 +4918,9 @@
   <item id="344A" name="Verve Earring" stackable="False" address="1,2,10" />
   <item id="344B" name="Aura Earring" stackable="False" address="1,2,10" />
   <item id="344C" name="Loyalty Earring" stackable="False" address="1,2,10" />
+  <item id="344E" name="Victory Earring" stackable="False" address="1,2,10" />
   <item id="344F" name="Genius Earring" stackable="False" address="1,2,10" />
+  <item id="3450" name="Grace Earring" stackable="False" address="1,2,10" />
   <item id="3451" name="Serenity Earring" stackable="False" address="1,2,10" />
   <item id="3452" name="Vigor Earring" stackable="False" address="1,2,10" />
   <item id="3453" name="Mana Earring" stackable="False" address="1,2,10" />
@@ -4933,7 +4982,7 @@
   <item id="396D" name="Verve Earring +1" stackable="False" address="1,2,10" />
   <item id="396E" name="Aura Earring +1" stackable="False" address="1,2,10" />
   <item id="396F" name="Lyt. Earring +1" stackable="False" address="1,2,10" />
-  <item id="3970" name="Cel. Earring +1" stackable="False" address="1,2,10" />
+  <item id="3971" name="Victory Earring +1" stackable="False" address="1,2,10" />
   <item id="3972" name="Genius Earring +1" stackable="False" address="1,2,10" />
   <item id="3976" name="Mana Earring +1" stackable="False" address="1,2,10" />
   <item id="3977" name="Allure Earring +1" stackable="False" address="1,2,10" />
@@ -5049,6 +5098,7 @@
   <item id="3EB4" name="Incubus Earring" stackable="False" address="1,2,10" />
   <item id="3EB5" name="Incubus Earring +1" stackable="False" address="1,2,10" />
   <item id="3EBB" name="Graiai Earring" stackable="False" address="1,2,10" />
+  <item id="6F6E" name="" stackable="False" address="1,2,10" />
   <item id="29FE" name="Tyrant's Ring" stackable="False" address="1,2,11" />
   <item id="29FF" name="Valseur's Ring" stackable="False" address="1,2,11" />
   <item id="2A00" name="Prolix Ring" stackable="False" address="1,2,11" />
@@ -5058,6 +5108,7 @@
   <item id="2A0C" name="Sheltered Ring" stackable="False" address="1,2,11" />
   <item id="2A0D" name="Arvina Ringlet" stackable="False" address="1,2,11" />
   <item id="2A0E" name="Lunette Ring" stackable="False" address="1,2,11" />
+  <item id="2A17" name="Gaiardas Ring" stackable="False" address="1,2,11" />
   <item id="2A1E" name="Ambuscade Ring" stackable="False" address="1,2,11" />
   <item id="2A1F" name="Veneficium Ring" stackable="False" address="1,2,11" />
   <item id="2A20" name="Dhanurveda Ring" stackable="False" address="1,2,11" />
@@ -5238,6 +5289,7 @@
   <item id="34E4" name="Grace Ring" stackable="False" address="1,2,11" />
   <item id="34E5" name="Serenity Ring" stackable="False" address="1,2,11" />
   <item id="34E6" name="Vigor Ring" stackable="False" address="1,2,11" />
+  <item id="34E7" name="Mystic Ring" stackable="False" address="1,2,11" />
   <item id="34E8" name="Allure Ring" stackable="False" address="1,2,11" />
   <item id="34E9" name="Demon's Ring +1" stackable="False" address="1,2,11" />
   <item id="34EA" name="Hard Leather Ring" stackable="False" address="1,2,11" />
@@ -5332,6 +5384,7 @@
   <item id="3DA5" name="Cerberus Ring +1" stackable="False" address="1,2,11" />
   <item id="3DA6" name="Manashell Ring" stackable="False" address="1,2,11" />
   <item id="3DA7" name="Armored Ring" stackable="False" address="1,2,11" />
+  <item id="3DA8" name="Dominion Ring" stackable="False" address="1,2,11" />
   <item id="3DA9" name="Gobniu's Ring" stackable="False" address="1,2,11" />
   <item id="3DAC" name="Marid Ring" stackable="False" address="1,2,11" />
   <item id="3DAD" name="Marid Ring +1" stackable="False" address="1,2,11" />
@@ -5816,10 +5869,12 @@
   <item id="17BD" name="Indi-DEX" stackable="False" address="1,3,7" />
   <item id="17BE" name="Indi-VIT" stackable="False" address="1,3,7" />
   <item id="17BF" name="Indi-AGI" stackable="False" address="1,3,7" />
+  <item id="17C0" name="Indi-INT" stackable="False" address="1,3,7" />
   <item id="17C1" name="Indi-MND" stackable="False" address="1,3,7" />
   <item id="17C2" name="Indi-CHR" stackable="False" address="1,3,7" />
   <item id="17C3" name="Indi-Fury" stackable="False" address="1,3,7" />
   <item id="17C4" name="Indi-Barrier" stackable="False" address="1,3,7" />
+  <item id="17C5" name="Indi-Acumen" stackable="False" address="1,3,7" />
   <item id="17C6" name="Indi-Fend" stackable="False" address="1,3,7" />
   <item id="17C7" name="Indi-Precision" stackable="False" address="1,3,7" />
   <item id="17C8" name="Indi-Voidance" stackable="False" address="1,3,7" />
@@ -5829,8 +5884,12 @@
   <item id="17CC" name="Indi-Frailty" stackable="False" address="1,3,7" />
   <item id="17CD" name="Indi-Fade" stackable="False" address="1,3,7" />
   <item id="17CE" name="Indi-Malaise" stackable="False" address="1,3,7" />
+  <item id="17CF" name="Indi-Slip" stackable="False" address="1,3,7" />
+  <item id="17D0" name="Indi-Torpor" stackable="False" address="1,3,7" />
   <item id="17D1" name="Indi-Vex" stackable="False" address="1,3,7" />
   <item id="17D2" name="Indi-Languor" stackable="False" address="1,3,7" />
+  <item id="17D3" name="Indi-Slow" stackable="False" address="1,3,7" />
+  <item id="17D4" name="Indi-Paralysis" stackable="False" address="1,3,7" />
   <item id="17D5" name="Indi-Gravity" stackable="False" address="1,3,7" />
   <item id="B88" name="M. Counteragent" stackable="True" address="1,4" />
   <item id="1010" name="Potion" stackable="False" address="1,4" />
@@ -5902,7 +5961,7 @@
   <item id="1487" name="Hyper Ether" stackable="False" address="1,4" />
   <item id="1490" name="Yellow Liquid" stackable="False" address="1,4" />
   <item id="1494" name="CCB Polymer" stackable="False" address="1,4" />
-  <item id="14B2" name="Muting Potion" stackable="False" address="1,4" />
+  <item id="14B2" name="Muting Potion" stackable="True" address="1,4" />
   <item id="14BA" name="Hallowed Water" stackable="True" address="1,4" />
   <item id="14BB" name="Invitriol" stackable="True" address="1,4" />
   <item id="14CF" name="Potion Drop" stackable="True" address="1,4" />
@@ -6235,9 +6294,15 @@
   <item id="DA2" name="Pil's Tuille" stackable="False" address="1,6,1" />
   <item id="DA4" name="Kaggen's Cuticle" stackable="False" address="1,6,1" />
   <item id="F4E" name="Midrium Ore" stackable="False" address="1,6,1" />
-  <item id="F4F" name="Midrium Ingot" stackable="False" address="1,6,1" />
+  <item id="F4F" name="Midrium Ingot" stackable="True" address="1,6,1" />
   <item id="F50" name="Vanadium Ore" stackable="False" address="1,6,1" />
-  <item id="F7B" name="Midrium Sheet" stackable="False" address="1,6,1" />
+  <item id="F7B" name="Midrium Sheet" stackable="True" address="1,6,1" />
+  <item id="FB4" name="Titanium Ore" stackable="False" address="1,6,1" />
+  <item id="FB5" name="Titanium Ingot" stackable="True" address="1,6,1" />
+  <item id="FB6" name="Titanium Sheet" stackable="False" address="1,6,1" />
+  <item id="FCA" name="Acuex Ore" stackable="False" address="1,6,1" />
+  <item id="FCC" name="Atramenterrane" stackable="False" address="1,6,1" />
+  <item id="FCE" name="Corroded Ore" stackable="False" address="1,6,1" />
   <item id="282" name="Zinc Ore" stackable="False" address="1,6,2" />
   <item id="284" name="Mythril Ore" stackable="False" address="1,6,2" />
   <item id="28A" name="Brass Ingot" stackable="True" address="1,6,2" />
@@ -6365,7 +6430,7 @@
   <item id="68F" name="Bewitched Gold" stackable="True" address="1,6,2" />
   <item id="6CC" name="Iolite" stackable="False" address="1,6,2" />
   <item id="6E6" name="Tiger Eye" stackable="False" address="1,6,2" />
-  <item id="72A" name="Ardent Jadeite" stackable="False" address="1,6,2" />
+  <item id="72A" name="Ardent Jadeite" stackable="True" address="1,6,2" />
   <item id="72B" name="Vivified Mythril" stackable="True" address="1,6,2" />
   <item id="72C" name="Marble" stackable="False" address="1,6,2" />
   <item id="757" name="Vivio Platinum" stackable="False" address="1,6,2" />
@@ -6375,14 +6440,14 @@
   <item id="8B4" name="Luminium Ore" stackable="False" address="1,6,2" />
   <item id="8E3" name="Scintillant Ingot" stackable="True" address="1,6,2" />
   <item id="901" name="Auric Sand" stackable="True" address="1,6,2" />
-  <item id="904" name="Mythril Coil" stackable="False" address="1,6,2" />
+  <item id="904" name="Mythril Coil" stackable="True" address="1,6,2" />
   <item id="907" name="Myth.Gear Mach" stackable="True" address="1,6,2" />
   <item id="937" name="Star Sapphire" stackable="False" address="1,6,2" />
   <item id="938" name="Golden Gear" stackable="True" address="1,6,2" />
   <item id="971" name="Aht Urhgan Brass" stackable="False" address="1,6,2" />
   <item id="972" name="A.U. Brass Ingot" stackable="True" address="1,6,2" />
-  <item id="973" name="A.U Brass Sheet" stackable="False" address="1,6,2" />
-  <item id="976" name="Mtl. Mesh Sheet" stackable="False" address="1,6,2" />
+  <item id="973" name="A.U Brass Sheet" stackable="True" address="1,6,2" />
+  <item id="976" name="Mtl. Mesh Sheet" stackable="True" address="1,6,2" />
   <item id="9A6" name="Nethereye Chain" stackable="False" address="1,6,2" />
   <item id="9A7" name="Netherfield Chain" stackable="False" address="1,6,2" />
   <item id="9A8" name="Netherspirit Chain" stackable="False" address="1,6,2" />
@@ -6416,7 +6481,7 @@
   <item id="CE7" name="Light Geode" stackable="True" address="1,6,2" />
   <item id="CE8" name="Shadow Geode" stackable="True" address="1,6,2" />
   <item id="CF4" name="Flame Gem" stackable="True" address="1,6,2" />
-  <item id="CF5" name="Snow Gem" stackable="False" address="1,6,2" />
+  <item id="CF5" name="Snow Gem" stackable="True" address="1,6,2" />
   <item id="CF6" name="Breeze Gem" stackable="False" address="1,6,2" />
   <item id="CF7" name="Soil Gem" stackable="True" address="1,6,2" />
   <item id="CF8" name="Thunder Gem" stackable="True" address="1,6,2" />
@@ -6435,7 +6500,11 @@
   <item id="F52" name="Rhodium Ore" stackable="False" address="1,6,2" />
   <item id="F53" name="Rhodium Ingot" stackable="True" address="1,6,2" />
   <item id="F54" name="Scholar Stone" stackable="False" address="1,6,2" />
-  <item id="F55" name="Tanzanite Jewel" stackable="False" address="1,6,2" />
+  <item id="F55" name="Tanzanite Jewel" stackable="True" address="1,6,2" />
+  <item id="F7C" name="Rhodium Sheet" stackable="True" address="1,6,2" />
+  <item id="FB7" name="Snowsteel Ore" stackable="False" address="1,6,2" />
+  <item id="FB8" name="Snowsteel" stackable="False" address="1,6,2" />
+  <item id="FCB" name="Lavarion" stackable="False" address="1,6,2" />
   <item id="1491" name="Mistmelt" stackable="False" address="1,6,2" />
   <item id="211" name="Luminicloth" stackable="True" address="1,6,3" />
   <item id="330" name="Silk Thread" stackable="True" address="1,6,3" />
@@ -6490,7 +6559,7 @@
   <item id="6A5" name="Fine Linen Cloth" stackable="True" address="1,6,3" />
   <item id="6A6" name="Smooth Velvet" stackable="True" address="1,6,3" />
   <item id="6B0" name="Cashmere Wool" stackable="False" address="1,6,3" />
-  <item id="6B1" name="Cashmere Thrd" stackable="False" address="1,6,3" />
+  <item id="6B1" name="Cashmere Thrd" stackable="True" address="1,6,3" />
   <item id="6B2" name="Cashmere Cloth" stackable="False" address="1,6,3" />
   <item id="6CB" name="Balloon Cloth" stackable="False" address="1,6,3" />
   <item id="6E4" name="Kejusu Satin" stackable="True" address="1,6,3" />
@@ -6557,13 +6626,20 @@
   <item id="B3E" name="Scarlet Kadife" stackable="False" address="1,6,3" />
   <item id="D79" name="Celaeno's Cloth" stackable="False" address="1,6,3" />
   <item id="DB0" name="Peapuk Wing" stackable="True" address="1,6,3" />
-  <item id="DD8" name="Penelope's Cloth" stackable="False" address="1,6,3" />
+  <item id="DD8" name="Penelope's Cloth" stackable="True" address="1,6,3" />
   <item id="DD9" name="Serica Cloth" stackable="True" address="1,6,3" />
   <item id="DDE" name="Wyrdstrand" stackable="True" address="1,6,3" />
   <item id="DDF" name="Wyrdweave" stackable="True" address="1,6,3" />
   <item id="F1E" name="Simian Mane" stackable="False" address="1,6,3" />
   <item id="F5A" name="Twitherym Wing" stackable="True" address="1,6,3" />
   <item id="F65" name="Chapuli Wing" stackable="True" address="1,6,3" />
+  <item id="F8D" name="Bztavian Wing" stackable="False" address="1,6,3" />
+  <item id="FB0" name="Tulfaire Feather" stackable="True" address="1,6,3" />
+  <item id="FBA" name="Akaso" stackable="True" address="1,6,3" />
+  <item id="FBB" name="Akaso Thread" stackable="True" address="1,6,3" />
+  <item id="FBC" name="Akaso Cloth" stackable="False" address="1,6,3" />
+  <item id="FCD" name="Cyclone Cotton" stackable="True" address="1,6,3" />
+  <item id="FCF" name="Rdt. Silk Thread" stackable="True" address="1,6,3" />
   <item id="1F9" name="Sheepskin" stackable="False" address="1,6,4" />
   <item id="1FA" name="Coeurl Leather" stackable="True" address="1,6,4" />
   <item id="350" name="Dhalmel Leather" stackable="True" address="1,6,4" />
@@ -6635,7 +6711,7 @@
   <item id="84A" name="Ovinnik Leather" stackable="True" address="1,6,4" />
   <item id="84B" name="Catoblepas Hide" stackable="False" address="1,6,4" />
   <item id="84C" name="Catobl. Leather" stackable="True" address="1,6,4" />
-  <item id="84D" name="Yellow Mouton" stackable="False" address="1,6,4" />
+  <item id="84D" name="Yellow Mouton" stackable="True" address="1,6,4" />
   <item id="851" name="Tanning Vat" stackable="True" address="1,6,4" />
   <item id="85B" name="Fr. Dhalmel Hide" stackable="False" address="1,6,4" />
   <item id="85C" name="Fragrant Ram Skin" stackable="False" address="1,6,4" />
@@ -6657,6 +6733,7 @@
   <item id="9F6" name="Vellum" stackable="True" address="1,6,4" />
   <item id="A0A" name="Pelt of Dawon" stackable="False" address="1,6,4" />
   <item id="A8F" name="Khrom. Leather" stackable="True" address="1,6,4" />
+  <item id="AAD" name="S. Smil. Leather" stackable="False" address="1,6,4" />
   <item id="AB1" name="Silky Suede" stackable="False" address="1,6,4" />
   <item id="ABE" name="Amphiptere Hide" stackable="False" address="1,6,4" />
   <item id="ABF" name="Amph. Leather" stackable="True" address="1,6,4" />
@@ -6735,7 +6812,7 @@
   <item id="7B5" name="Vivio Femur" stackable="False" address="1,6,5" />
   <item id="7B6" name="Vivio Crab Shell" stackable="False" address="1,6,5" />
   <item id="7B7" name="Vi. Scorpion Claw" stackable="False" address="1,6,5" />
-  <item id="7B8" name="Vi. Wyv. Scale" stackable="False" address="1,6,5" />
+  <item id="7B8" name="Vi. Wyv. Scale" stackable="True" address="1,6,5" />
   <item id="7D2" name="Beast Horn" stackable="False" address="1,6,5" />
   <item id="7D4" name="Carap. Powder" stackable="True" address="1,6,5" />
   <item id="7D9" name="Coral Horn" stackable="False" address="1,6,5" />
@@ -6762,7 +6839,7 @@
   <item id="9D9" name="Gnole Claw" stackable="False" address="1,6,5" />
   <item id="A4F" name="Hardened Bone" stackable="False" address="1,6,5" />
   <item id="A5E" name="Dark Ixion Horn" stackable="False" address="1,6,5" />
-  <item id="AAF" name="Dk. Ixion Ferrule" stackable="False" address="1,6,5" />
+  <item id="AAF" name="Dk. Ixion Ferrule" stackable="True" address="1,6,5" />
   <item id="AB7" name="Oxblood Orb" stackable="True" address="1,6,5" />
   <item id="AB8" name="Angel Skin Orb" stackable="True" address="1,6,5" />
   <item id="ABB" name="Gargouille Horn" stackable="True" address="1,6,5" />
@@ -6792,6 +6869,8 @@
   <item id="F62" name="Mantid Foreleg" stackable="False" address="1,6,5" />
   <item id="F63" name="Mantid Carapace" stackable="False" address="1,6,5" />
   <item id="F64" name="Carrier Crab Crpc" stackable="False" address="1,6,5" />
+  <item id="F89" name="Gabbrath Horn" stackable="False" address="1,6,5" />
+  <item id="F8B" name="Rockfin Tooth" stackable="False" address="1,6,5" />
   <item id="1524" name="Scapegoat" stackable="False" address="1,6,5" />
   <item id="2B0" name="Arrowwood Log" stackable="False" address="1,6,6" />
   <item id="2B1" name="Lauan Log" stackable="False" address="1,6,6" />
@@ -6884,7 +6963,7 @@
   <item id="689" name="Ether. Oak Lbr" stackable="True" address="1,6,6" />
   <item id="6E2" name="Cassia Lumber" stackable="True" address="1,6,6" />
   <item id="6E3" name="Viridian Urushi" stackable="True" address="1,6,6" />
-  <item id="717" name="Sanctified Lbr" stackable="False" address="1,6,6" />
+  <item id="717" name="Sanctified Lbr" stackable="True" address="1,6,6" />
   <item id="719" name="Cactus Arm" stackable="False" address="1,6,6" />
   <item id="7A9" name="Gold Arrowheads" stackable="True" address="1,6,6" />
   <item id="7AA" name="Plt. Arrowheads" stackable="True" address="1,6,6" />
@@ -6903,10 +6982,10 @@
   <item id="9E6" name="Jacaranda Log" stackable="False" address="1,6,6" />
   <item id="9E7" name="Jacaranda Lbr" stackable="True" address="1,6,6" />
   <item id="9F2" name="Blk. Bolt Heads" stackable="True" address="1,6,6" />
-  <item id="9F3" name="Obsid. Arrowhd" stackable="False" address="1,6,6" />
+  <item id="9F3" name="Obsid. Arrowhd" stackable="True" address="1,6,6" />
   <item id="9F4" name="Gnat Fletchings" stackable="True" address="1,6,6" />
   <item id="A58" name="Ant. Arrowhd" stackable="True" address="1,6,6" />
-  <item id="A59" name="Colibri Fltchg" stackable="False" address="1,6,6" />
+  <item id="A59" name="Colibri Fltchg" stackable="True" address="1,6,6" />
   <item id="A5A" name="Drk. Bolt Heads" stackable="True" address="1,6,6" />
   <item id="A5B" name="Fsn. Bolt Heads" stackable="True" address="1,6,6" />
   <item id="AC9" name="Feyweald Log" stackable="False" address="1,6,6" />
@@ -6920,10 +6999,15 @@
   <item id="DB3" name="Adm. Bolt Heads" stackable="False" address="1,6,6" />
   <item id="F56" name="Urunday Log" stackable="False" address="1,6,6" />
   <item id="F57" name="Urunday Lumber" stackable="True" address="1,6,6" />
-  <item id="F67" name="Chapuli Fltchg" stackable="False" address="1,6,6" />
+  <item id="F67" name="Chapuli Fltchg" stackable="True" address="1,6,6" />
   <item id="F68" name="Chapuli Arrowhd" stackable="True" address="1,6,6" />
+  <item id="F69" name="Mdr. Bolt Heads" stackable="False" address="1,6,6" />
   <item id="F6A" name="Mantid Arrowhd" stackable="True" address="1,6,6" />
-  <item id="F6B" name="Dmc. Bolt Heads" stackable="False" address="1,6,6" />
+  <item id="F6C" name="Tulfaire Fltchg" stackable="False" address="1,6,6" />
+  <item id="F6D" name="Tit. Bolt Heads" stackable="True" address="1,6,6" />
+  <item id="FB2" name="Guatambu Log" stackable="False" address="1,6,6" />
+  <item id="FB3" name="Gua. Lumber" stackable="True" address="1,6,6" />
+  <item id="FBE" name="Sekishitsu" stackable="True" address="1,6,6" />
   <item id="27D" name="Slime Oil" stackable="True" address="1,6,7" />
   <item id="390" name="Beehive Chip" stackable="True" address="1,6,7" />
   <item id="391" name="Beeswax" stackable="True" address="1,6,7" />
@@ -7110,12 +7194,15 @@
   <item id="B90" name="Water Lily" stackable="True" address="1,6,7" />
   <item id="DA3" name="Akvan's Pennon" stackable="False" address="1,6,7" />
   <item id="DDD" name="Belladonna Sap" stackable="False" address="1,6,7" />
-  <item id="F4B" name="Saffron Blossom" stackable="False" address="1,6,7" />
+  <item id="F4B" name="Saffron Blossom" stackable="True" address="1,6,7" />
   <item id="F4D" name="Leafkin Frond" stackable="True" address="1,6,7" />
   <item id="F5B" name="Twitherym Scale" stackable="True" address="1,6,7" />
   <item id="F5F" name="Umbril Ooze" stackable="True" address="1,6,7" />
   <item id="F60" name="Acuex Poison" stackable="True" address="1,6,7" />
   <item id="F61" name="Panopt Tears" stackable="False" address="1,6,7" />
+  <item id="F8C" name="Bztavian Stinger" stackable="False" address="1,6,7" />
+  <item id="FBF" name="Snap. Secretion" stackable="False" address="1,6,7" />
+  <item id="FC0" name="Snap. Tendril" stackable="False" address="1,6,7" />
   <item id="1047" name="Cracker" stackable="True" address="1,6,7" />
   <item id="1048" name="Twinkle Shower" stackable="True" address="1,6,7" />
   <item id="1049" name="Little Comet" stackable="True" address="1,6,7" />
@@ -7228,6 +7315,8 @@
   <item id="16E6" name="Glk. Sausage -1" stackable="True" address="1,7,1,1" />
   <item id="1724" name="S. Salis. Steak" stackable="False" address="1,7,1,1" />
   <item id="1725" name="C. Salis Steak" stackable="False" address="1,7,1,1" />
+  <item id="17B7" name="Magma Steak" stackable="False" address="1,7,1,1" />
+  <item id="17B8" name="Magma Steak +1" stackable="False" address="1,7,1,1" />
   <item id="10AB" name="Btr. Nebimonite" stackable="True" address="1,7,1,2" />
   <item id="10B3" name="Emperor Roe" stackable="True" address="1,7,1,2" />
   <item id="10B4" name="Flint Caviar" stackable="True" address="1,7,1,2" />
@@ -7287,9 +7376,9 @@
   <item id="1463" name="Ikra Gunkan" stackable="True" address="1,7,1,2" />
   <item id="1464" name="Ikra Gunkan +1" stackable="True" address="1,7,1,2" />
   <item id="15E0" name="Balik Sis" stackable="True" address="1,7,1,2" />
-  <item id="15E1" name="Balik Sis +1" stackable="False" address="1,7,1,2" />
-  <item id="160F" name="Lik Kabob" stackable="False" address="1,7,1,2" />
-  <item id="1610" name="Grilled Lik" stackable="False" address="1,7,1,2" />
+  <item id="15E1" name="Balik Sis +1" stackable="True" address="1,7,1,2" />
+  <item id="160F" name="Lik Kabob" stackable="True" address="1,7,1,2" />
+  <item id="1610" name="Grilled Lik" stackable="True" address="1,7,1,2" />
   <item id="1614" name="Anchovy" stackable="True" address="1,7,1,2" />
   <item id="161F" name="Salmon Sushi" stackable="True" address="1,7,1,2" />
   <item id="1620" name="Salmon Sushi +1" stackable="True" address="1,7,1,2" />
@@ -7300,14 +7389,15 @@
   <item id="163B" name="Shrimp Sushi" stackable="True" address="1,7,1,2" />
   <item id="163C" name="Shrimp Sushi +1" stackable="True" address="1,7,1,2" />
   <item id="163D" name="Octopus Sushi" stackable="True" address="1,7,1,2" />
-  <item id="163E" name="Octps. Sushi +1" stackable="False" address="1,7,1,2" />
+  <item id="163E" name="Octps. Sushi +1" stackable="True" address="1,7,1,2" />
   <item id="1659" name="Crab Sushi" stackable="True" address="1,7,1,2" />
   <item id="165A" name="Crab Sushi +1" stackable="True" address="1,7,1,2" />
   <item id="1737" name="Smoked Mackerel" stackable="True" address="1,7,1,2" />
-  <item id="175C" name="Boiled Barnacles" stackable="False" address="1,7,1,2" />
+  <item id="175C" name="Boiled Barnacles" stackable="True" address="1,7,1,2" />
   <item id="175D" name="Bld. Barnacles +1" stackable="False" address="1,7,1,2" />
   <item id="175E" name="Senroh Skewer" stackable="True" address="1,7,1,2" />
-  <item id="175F" name="Piscator's Skewer" stackable="False" address="1,7,1,2" />
+  <item id="17B5" name="Riverfin Soup" stackable="False" address="1,7,1,2" />
+  <item id="17B6" name="Oceanfin Soup" stackable="False" address="1,7,1,2" />
   <item id="10B7" name="Tavnazian Salad" stackable="False" address="1,7,1,3" />
   <item id="10BA" name="Pipin' Popoto" stackable="True" address="1,7,1,3" />
   <item id="10C5" name="Monastic Sautee" stackable="False" address="1,7,1,3" />
@@ -7407,8 +7497,8 @@
   <item id="1681" name="Kohlrouladen +1" stackable="False" address="1,7,1,4" />
   <item id="172A" name="Sprightly Soup" stackable="False" address="1,7,1,4" />
   <item id="172B" name="Shimmy Soup" stackable="False" address="1,7,1,4" />
-  <item id="176E" name="Adoulin Soup" stackable="False" address="1,7,1,4" />
-  <item id="176F" name="Adoulin Soup +1" stackable="False" address="1,7,1,4" />
+  <item id="176E" name="Adoulinian Soup" stackable="False" address="1,7,1,4" />
+  <item id="176F" name="Adoulinian Soup +1" stackable="False" address="1,7,1,4" />
   <item id="10AA" name="Fulm-long Sub" stackable="True" address="1,7,1,5" />
   <item id="10AC" name="Sea Spray Risotto" stackable="False" address="1,7,1,5" />
   <item id="10AF" name="Rice Dumpling" stackable="True" address="1,7,1,5" />
@@ -7448,7 +7538,7 @@
   <item id="142F" name="Coeurl Sub +1" stackable="True" address="1,7,1,5" />
   <item id="143D" name="Tortilla Bueno" stackable="True" address="1,7,1,5" />
   <item id="143E" name="Salty Bretzel" stackable="True" address="1,7,1,5" />
-  <item id="1442" name="Yahata Sushi" stackable="True" address="1,7,1,5" />
+  <item id="1442" name="Yahata Sushi" stackable="False" address="1,7,1,5" />
   <item id="1444" name="Peperoncino" stackable="True" address="1,7,1,5" />
   <item id="1445" name="Vongole Rosso" stackable="True" address="1,7,1,5" />
   <item id="1446" name="Carbonara" stackable="True" address="1,7,1,5" />
@@ -7456,7 +7546,7 @@
   <item id="1448" name="Boscaiola" stackable="True" address="1,7,1,5" />
   <item id="1449" name="Nero di Seppia" stackable="True" address="1,7,1,5" />
   <item id="144D" name="Peperoncino +1" stackable="True" address="1,7,1,5" />
-  <item id="144E" name="Vongole R. +1" stackable="False" address="1,7,1,5" />
+  <item id="144E" name="Vongole R. +1" stackable="True" address="1,7,1,5" />
   <item id="144F" name="Carbonara +1" stackable="True" address="1,7,1,5" />
   <item id="1450" name="Pescatora +1" stackable="True" address="1,7,1,5" />
   <item id="1451" name="Boscaiola +1" stackable="False" address="1,7,1,5" />
@@ -7468,19 +7558,20 @@
   <item id="15D0" name="Ic Pilav" stackable="False" address="1,7,1,5" />
   <item id="15D1" name="Ic Pilav +1" stackable="False" address="1,7,1,5" />
   <item id="15D6" name="Balik Sandvici" stackable="True" address="1,7,1,5" />
-  <item id="15D7" name="Blk. Sandvici +1" stackable="False" address="1,7,1,5" />
+  <item id="15D7" name="Blk. Sandvici +1" stackable="True" address="1,7,1,5" />
   <item id="15DC" name="Simit" stackable="True" address="1,7,1,5" />
   <item id="15DD" name="Simit +1" stackable="True" address="1,7,1,5" />
   <item id="15F7" name="Tonno Rosso" stackable="True" address="1,7,1,5" />
+  <item id="15F8" name="Tonno Rosso +1" stackable="False" address="1,7,1,5" />
   <item id="1603" name="Shrimp Cracker" stackable="True" address="1,7,1,5" />
   <item id="1604" name="Shr. Cracker +1" stackable="True" address="1,7,1,5" />
-  <item id="1605" name="Pogaca" stackable="False" address="1,7,1,5" />
+  <item id="1605" name="Pogaca" stackable="True" address="1,7,1,5" />
   <item id="1606" name="Pogaca +1" stackable="False" address="1,7,1,5" />
-  <item id="1619" name="Army Biscuit" stackable="False" address="1,7,1,5" />
+  <item id="1619" name="Army Biscuit" stackable="True" address="1,7,1,5" />
   <item id="161A" name="Ortolana" stackable="True" address="1,7,1,5" />
   <item id="161B" name="Ortolana +1" stackable="False" address="1,7,1,5" />
   <item id="1636" name="Cheese Sandwch" stackable="True" address="1,7,1,5" />
-  <item id="1637" name="Cheese Sand. +1" stackable="False" address="1,7,1,5" />
+  <item id="1637" name="Cheese Sand. +1" stackable="True" address="1,7,1,5" />
   <item id="163F" name="Margherita Pizza" stackable="False" address="1,7,1,5" />
   <item id="1640" name="Marg. Pizza +1" stackable="False" address="1,7,1,5" />
   <item id="1641" name="Pepperoni Pizza" stackable="False" address="1,7,1,5" />
@@ -7514,11 +7605,12 @@
   <item id="1703" name="Seafood Pitaru" stackable="True" address="1,7,1,5" />
   <item id="1704" name="B.E.W. Pitaru" stackable="True" address="1,7,1,5" />
   <item id="1728" name="Himesama R.Ball" stackable="True" address="1,7,1,5" />
-  <item id="1729" name="Ojo Rice Ball" stackable="False" address="1,7,1,5" />
+  <item id="1729" name="Ojo Rice Ball" stackable="True" address="1,7,1,5" />
   <item id="1750" name="Seafood Paella" stackable="False" address="1,7,1,5" />
   <item id="1752" name="Mushroom Paella" stackable="False" address="1,7,1,5" />
   <item id="1754" name="Beef Paella" stackable="False" address="1,7,1,5" />
   <item id="1755" name="Beef Paella +1" stackable="False" address="1,7,1,5" />
+  <item id="1756" name="Barnacle Paella" stackable="False" address="1,7,1,5" />
   <item id="1757" name="Flapano's Paella" stackable="False" address="1,7,1,5" />
   <item id="10AD" name="Bijou Glace" stackable="False" address="1,7,1,6" />
   <item id="10AE" name="Swt. Rice Cake" stackable="True" address="1,7,1,6" />
@@ -7608,7 +7700,7 @@
   <item id="168F" name="Chocolate Crepe" stackable="True" address="1,7,1,6" />
   <item id="1690" name="Crepe Caprice" stackable="True" address="1,7,1,6" />
   <item id="1691" name="Pear Crepe" stackable="True" address="1,7,1,6" />
-  <item id="1692" name="Crepe B. Helene" stackable="False" address="1,7,1,6" />
+  <item id="1692" name="Crepe B. Helene" stackable="True" address="1,7,1,6" />
   <item id="1693" name="Cherry Macaron" stackable="True" address="1,7,1,6" />
   <item id="1694" name="Coffee Macaron" stackable="True" address="1,7,1,6" />
   <item id="1695" name="Kitron Macaron" stackable="True" address="1,7,1,6" />
@@ -7623,6 +7715,10 @@
   <item id="1736" name="Cascade Candy" stackable="True" address="1,7,1,6" />
   <item id="175A" name="Felicifruit Gelatin" stackable="False" address="1,7,1,6" />
   <item id="175B" name="Dulcet Panettones" stackable="False" address="1,7,1,6" />
+  <item id="1779" name="Mog Pudding" stackable="True" address="1,7,1,6" />
+  <item id="177A" name="Sakura Biscuit" stackable="True" address="1,7,1,6" />
+  <item id="17AF" name="Fruit Parfait" stackable="False" address="1,7,1,6" />
+  <item id="17B0" name="Queen's Crown" stackable="False" address="1,7,1,6" />
   <item id="10BB" name="Choco-delight" stackable="False" address="1,7,1,7" />
   <item id="10BE" name="Healing Tea" stackable="False" address="1,7,1,7" />
   <item id="10CB" name="Orange au Lait" stackable="False" address="1,7,1,7" />
@@ -7650,6 +7746,7 @@
   <item id="15D9" name="Imperial Coffee+1" stackable="False" address="1,7,1,7" />
   <item id="15DA" name="Chai +1" stackable="False" address="1,7,1,7" />
   <item id="1726" name="Date Tea" stackable="False" address="1,7,1,7" />
+  <item id="1727" name="Caravan Tea" stackable="False" address="1,7,1,7" />
   <item id="172C" name="Kitron Juice" stackable="False" address="1,7,1,7" />
   <item id="172D" name="D. Fruit au Lait" stackable="False" address="1,7,1,7" />
   <item id="1738" name="Frontier Soda" stackable="False" address="1,7,1,7" />
@@ -7719,8 +7816,10 @@
   <item id="A55" name="Eastern Ginger" stackable="True" address="1,7,2" />
   <item id="A8E" name="Buckwheat Flour" stackable="True" address="1,7,2" />
   <item id="A96" name="Soba Noodles" stackable="True" address="1,7,2" />
-  <item id="F4C" name="Saffron" stackable="False" address="1,7,2" />
+  <item id="F4C" name="Saffron" stackable="True" address="1,7,2" />
   <item id="F66" name="Loc. Elutriator" stackable="True" address="1,7,2" />
+  <item id="F8A" name="Rockfin Fin" stackable="False" address="1,7,2" />
+  <item id="FB1" name="Mand. Sprout" stackable="True" address="1,7,2" />
   <item id="10B0" name="Dragon Meat" stackable="True" address="1,7,2" />
   <item id="10B1" name="Kitron" stackable="True" address="1,7,2" />
   <item id="10B2" name="Persikos" stackable="True" address="1,7,2" />
@@ -7822,11 +7921,12 @@
   <item id="1713" name="Winterflower" stackable="True" address="1,7,2" />
   <item id="1714" name="Butterpear" stackable="True" address="1,7,2" />
   <item id="172F" name="Moogurt" stackable="True" address="1,7,2" />
-  <item id="174C" name="Felicifruit" stackable="False" address="1,7,2" />
-  <item id="174D" name="Isleracea" stackable="False" address="1,7,2" />
+  <item id="174C" name="Felicifruit" stackable="True" address="1,7,2" />
+  <item id="174D" name="Isleracea" stackable="True" address="1,7,2" />
   <item id="174E" name="Ulbuconut" stackable="False" address="1,7,2" />
   <item id="174F" name="Verboshroom" stackable="False" address="1,7,2" />
   <item id="1771" name="Clotflagration" stackable="False" address="1,7,2" />
+  <item id="17B4" name="Gabbrath Meat" stackable="True" address="1,7,2" />
   <item id="270" name="Pamtam Kelp" stackable="True" address="1,7,3" />
   <item id="8A8" name="Lamp Marimo" stackable="True" address="1,7,3" />
   <item id="F7D" name="Adoulinian Kelp" stackable="True" address="1,7,3" />
@@ -7917,7 +8017,7 @@
   <item id="1413" name="Betta" stackable="True" address="1,7,3" />
   <item id="1414" name="Kalkanbaligi" stackable="False" address="1,7,3" />
   <item id="1415" name="Veydal Wrasse" stackable="False" address="1,7,3" />
-  <item id="1546" name="Red Bubble-Eye" stackable="False" address="1,7,3" />
+  <item id="1546" name="Red Bubble-Eye" stackable="True" address="1,7,3" />
   <item id="1547" name="Denizanasi" stackable="True" address="1,7,3" />
   <item id="1548" name="Kalamar" stackable="True" address="1,7,3" />
   <item id="1549" name="Hamsi" stackable="True" address="1,7,3" />
@@ -7948,6 +8048,9 @@
   <item id="1562" name="Ca Cuong" stackable="True" address="1,7,3" />
   <item id="1563" name="Gigant Octopus" stackable="False" address="1,7,3" />
   <item id="1564" name="Abaia" stackable="False" address="1,7,3" />
+  <item id="159E" name="Apkallufa" stackable="False" address="1,7,3" />
+  <item id="159F" name="Deademoiselle" stackable="True" address="1,7,3" />
+  <item id="15A0" name="Yorchete" stackable="False" address="1,7,3" />
   <item id="15A1" name="Soryu" stackable="False" address="1,7,3" />
   <item id="15A2" name="Sekiryu" stackable="False" address="1,7,3" />
   <item id="15A3" name="Hakuryu" stackable="False" address="1,7,3" />
@@ -7965,7 +8068,7 @@
   <item id="173D" name="Mussel" stackable="True" address="1,7,3" />
   <item id="173E" name="Mackerel" stackable="True" address="1,7,3" />
   <item id="173F" name="Bloodblotch" stackable="False" address="1,7,3" />
-  <item id="1740" name="Ruddy Seema" stackable="False" address="1,7,3" />
+  <item id="1740" name="Ruddy Seema" stackable="True" address="1,7,3" />
   <item id="1742" name="Barnacle" stackable="True" address="1,7,3" />
   <item id="1747" name="Dragonfish" stackable="False" address="1,7,3" />
   <item id="1748" name="Ulbukan Lobster" stackable="True" address="1,7,3" />
@@ -8043,7 +8146,7 @@
   <item id="889" name="Imp. Slv. Piece" stackable="True" address="1,9,1" />
   <item id="88A" name="Imp. Mtl. Piece" stackable="True" address="1,9,1" />
   <item id="88B" name="Imp. Gold Piece" stackable="True" address="1,9,1" />
-  <item id="8B6" name="Lam. Fire Cell" stackable="False" address="1,9,1" />
+  <item id="8B6" name="Lam. Fire Cell" stackable="True" address="1,9,1" />
   <item id="8B7" name="Lam. Water Cell" stackable="False" address="1,9,1" />
   <item id="8B8" name="Lam. Earth Cell" stackable="False" address="1,9,1" />
   <item id="8B9" name="Lam. Wind Cell" stackable="False" address="1,9,1" />
@@ -8228,6 +8331,8 @@
   <item id="F37" name="Rala Visage I" stackable="False" address="1,9,1" />
   <item id="F38" name="Rala Visage II" stackable="False" address="1,9,1" />
   <item id="F39" name="Rala Visage III" stackable="False" address="1,9,1" />
+  <item id="F3A" name="Rala Visage IV" stackable="False" address="1,9,1" />
+  <item id="F3B" name="Rala Visage V" stackable="False" address="1,9,1" />
   <item id="F3C" name="Faithful's Torso I" stackable="False" address="1,9,1" />
   <item id="F3D" name="Faithful's Torso II" stackable="False" address="1,9,1" />
   <item id="F3E" name="Faithfl. Torso III" stackable="False" address="1,9,1" />
@@ -8237,17 +8342,48 @@
   <item id="F42" name="Faithful's Legs II" stackable="False" address="1,9,1" />
   <item id="F43" name="Faithful's Legs III" stackable="False" address="1,9,1" />
   <item id="F44" name="Faithful's Legs IV" stackable="False" address="1,9,1" />
+  <item id="F45" name="Faithful's Legs V" stackable="False" address="1,9,1" />
   <item id="F46" name="Cirdas Visage I" stackable="False" address="1,9,1" />
   <item id="F47" name="Cirdas Visage II" stackable="False" address="1,9,1" />
   <item id="F48" name="Cirdas Visage III" stackable="False" address="1,9,1" />
   <item id="F49" name="Cirdas Visage IV" stackable="False" address="1,9,1" />
+  <item id="F4A" name="Cirdas Visage V" stackable="False" address="1,9,1" />
+  <item id="F72" name="Ghastly Stone" stackable="True" address="1,9,1" />
+  <item id="F73" name="Ghastly Stone +1" stackable="True" address="1,9,1" />
+  <item id="F74" name="Ghastly Stone +2" stackable="True" address="1,9,1" />
   <item id="F76" name="Yahse Humus" stackable="True" address="1,9,1" />
   <item id="F78" name="Celadon Yggrete" stackable="False" address="1,9,1" />
   <item id="F79" name="Zaffre Yggrete" stackable="False" address="1,9,1" />
   <item id="F7A" name="Alizarin Yggrete" stackable="False" address="1,9,1" />
   <item id="F86" name="Airlixir" stackable="True" address="1,9,1" />
   <item id="F87" name="Airlixir +1" stackable="True" address="1,9,1" />
-  <item id="F88" name="Airlixir +2" stackable="False" address="1,9,1" />
+  <item id="F88" name="Airlixir +2" stackable="True" address="1,9,1" />
+  <item id="F8E" name="Arborscent Seed" stackable="True" address="1,9,1" />
+  <item id="F8F" name="Arborfruit Seed" stackable="True" address="1,9,1" />
+  <item id="F94" name="Garden Worm" stackable="False" address="1,9,1" />
+  <item id="F95" name="Grove Humus" stackable="True" address="1,9,1" />
+  <item id="F96" name="Coalition Humus" stackable="False" address="1,9,1" />
+  <item id="F97" name="Grove Worm" stackable="False" address="1,9,1" />
+  <item id="F98" name="Grove Mulch" stackable="False" address="1,9,1" />
+  <item id="F99" name="Grove Cuttings" stackable="True" address="1,9,1" />
+  <item id="F9A" name="Entisyrup" stackable="False" address="1,9,1" />
+  <item id="F9B" name="Coalit. Fertilizer" stackable="False" address="1,9,1" />
+  <item id="F9C" name="Stone Serum" stackable="False" address="1,9,1" />
+  <item id="FA0" name="Coalition Serum" stackable="False" address="1,9,1" />
+  <item id="FA1" name="Sardine Sphere" stackable="False" address="1,9,1" />
+  <item id="FA5" name="Super Baitball" stackable="False" address="1,9,1" />
+  <item id="FA6" name="Sardine Chum" stackable="False" address="1,9,1" />
+  <item id="FA8" name="Shrimp Chum" stackable="False" address="1,9,1" />
+  <item id="FAA" name="Coalition Chum" stackable="False" address="1,9,1" />
+  <item id="FAB" name="Grow-M-Good" stackable="True" address="1,9,1" />
+  <item id="FC1" name="Verdigris St" stackable="True" address="1,9,1" />
+  <item id="FC2" name="Verdigris St. +1" stackable="True" address="1,9,1" />
+  <item id="FC3" name="Verdigris St. +2" stackable="True" address="1,9,1" />
+  <item id="FC5" name="Yorcia Visage I" stackable="False" address="1,9,1" />
+  <item id="FC6" name="Yorcia Visage II" stackable="False" address="1,9,1" />
+  <item id="FC7" name="Yorcia Visage III" stackable="False" address="1,9,1" />
+  <item id="FC8" name="Yorcia Visage IV" stackable="False" address="1,9,1" />
+  <item id="FC9" name="Yorcia Visage V" stackable="False" address="1,9,1" />
   <item id="104A" name="Wedding Bell" stackable="False" address="1,9,1" />
   <item id="177B" name="C. Ygg. Shard I" stackable="False" address="1,9,1" />
   <item id="177C" name="C. Ygg. Shard II" stackable="False" address="1,9,1" />
@@ -8264,8 +8400,21 @@
   <item id="1787" name="A. Ygg. Shard III" stackable="False" address="1,9,1" />
   <item id="1788" name="A. Ygg. Shard IV" stackable="False" address="1,9,1" />
   <item id="1789" name="A. Ygg. Shard V" stackable="False" address="1,9,1" />
+  <item id="178A" name="Celadon Yggzi I" stackable="False" address="1,9,1" />
+  <item id="178B" name="Celadon Yggzi II" stackable="False" address="1,9,1" />
+  <item id="178C" name="Celadon Yggzi III" stackable="False" address="1,9,1" />
+  <item id="178D" name="Celadon Yggzi IV" stackable="False" address="1,9,1" />
   <item id="178E" name="Celadon Yggzi V" stackable="False" address="1,9,1" />
+  <item id="178F" name="Zaffre Yggzi I" stackable="False" address="1,9,1" />
+  <item id="1790" name="Zaffre Yggzi II" stackable="False" address="1,9,1" />
+  <item id="1791" name="Zaffre Yggzi III" stackable="False" address="1,9,1" />
+  <item id="1792" name="Zaffre Yggzi IV" stackable="False" address="1,9,1" />
+  <item id="1793" name="Zaffre Yggzi V" stackable="False" address="1,9,1" />
+  <item id="1794" name="Alizarin Yggzi I" stackable="False" address="1,9,1" />
   <item id="1795" name="Alizarin Yggzi II" stackable="False" address="1,9,1" />
+  <item id="1796" name="Alizarin Yggzi III" stackable="False" address="1,9,1" />
+  <item id="1797" name="Alizarin Yggzi IV" stackable="False" address="1,9,1" />
+  <item id="1798" name="Alizarin Yggzi V" stackable="False" address="1,9,1" />
   <item id="1F1" name="Gigas Socks" stackable="False" address="1,9,2" />
   <item id="1F2" name="Yagudo Necklace" stackable="False" address="1,9,2" />
   <item id="1F3" name="Gigas Necklace" stackable="False" address="1,9,2" />
@@ -8390,9 +8539,9 @@
   <item id="B9E" name="Trump Card" stackable="True" address="1,9,3" />
   <item id="151A" name="Fire Card Case" stackable="True" address="1,9,3" />
   <item id="151B" name="Ice Card Case" stackable="True" address="1,9,3" />
-  <item id="151C" name="Wind Card Case" stackable="False" address="1,9,3" />
+  <item id="151C" name="Wind Card Case" stackable="True" address="1,9,3" />
   <item id="151D" name="Earth Card Case" stackable="True" address="1,9,3" />
-  <item id="151E" name="Thnd. Card Case" stackable="False" address="1,9,3" />
+  <item id="151E" name="Thnd. Card Case" stackable="True" address="1,9,3" />
   <item id="151F" name="Water Card Case" stackable="True" address="1,9,3" />
   <item id="1520" name="Light Card Case" stackable="True" address="1,9,3" />
   <item id="1521" name="Dark Card Case" stackable="True" address="1,9,3" />
@@ -8523,7 +8672,7 @@
   <item id="2802" name="Hexed Jacket" stackable="False" address="1,9,5" />
   <item id="2803" name="Hexed Doublet" stackable="False" address="1,9,5" />
   <item id="2804" name="Hexed Bliaut" stackable="False" address="1,9,5" />
-  <item id="2808" name="Hexed Doublet -1" stackable="False" address="1,9,5" />
+  <item id="2806" name="Hexed Domaru -1" stackable="False" address="1,9,5" />
   <item id="2807" name="Hexed Jacket -1" stackable="False" address="1,9,5" />
   <item id="2808" name="Hexed Doublet -1" stackable="False" address="1,9,5" />
   <item id="283F" name="Hexed Gauntlets" stackable="False" address="1,9,5" />
@@ -8540,6 +8689,7 @@
   <item id="2874" name="Hexed Nails" stackable="False" address="1,9,5" />
   <item id="2875" name="Hexed Boots" stackable="False" address="1,9,5" />
   <item id="2876" name="Hexed Gamb. -1" stackable="False" address="1,9,5" />
+  <item id="2878" name="Hexed Gamash. -1" stackable="False" address="1,9,5" />
   <item id="2879" name="Hexed Nails -1" stackable="False" address="1,9,5" />
   <item id="287A" name="Hexed Boots -1" stackable="False" address="1,9,5" />
   <item id="28B3" name="Hexed Coronet" stackable="False" address="1,9,5" />
@@ -8551,6 +8701,7 @@
   <item id="28B9" name="Hexed Somen -1" stackable="False" address="1,9,5" />
   <item id="28BA" name="Hexed Bonnet -1" stackable="False" address="1,9,5" />
   <item id="28BB" name="Hexed Coif -1" stackable="False" address="1,9,5" />
+  <item id="28BC" name="Hexed Mitra -1" stackable="False" address="1,9,5" />
   <item id="2957" name="Hexed Hose" stackable="False" address="1,9,5" />
   <item id="2958" name="Hexed Hakama" stackable="False" address="1,9,5" />
   <item id="2959" name="Hexed Kecks" stackable="False" address="1,9,5" />
@@ -8558,6 +8709,7 @@
   <item id="295B" name="Hexed Tights" stackable="False" address="1,9,5" />
   <item id="295C" name="Hexed Hose -1" stackable="False" address="1,9,5" />
   <item id="295D" name="Hexed Hakama -1" stackable="False" address="1,9,5" />
+  <item id="295E" name="Hexed Kecks -1" stackable="False" address="1,9,5" />
   <item id="295F" name="Hexed Slops -1" stackable="False" address="1,9,5" />
   <item id="8BE" name="Strobe" stackable="True" address="1,9,6" />
   <item id="8BF" name="Tension Spring" stackable="True" address="1,9,6" />
@@ -8579,7 +8731,7 @@
   <item id="8CF" name="Volt Gun" stackable="True" address="1,9,6" />
   <item id="8D0" name="Heat Seeker" stackable="True" address="1,9,6" />
   <item id="8D1" name="Stabilizer II" stackable="True" address="1,9,6" />
-  <item id="8D2" name="Mana Jammer" stackable="False" address="1,9,6" />
+  <item id="8D2" name="Mana Jammer" stackable="True" address="1,9,6" />
   <item id="8D3" name="Heatsink" stackable="True" address="1,9,6" />
   <item id="8D4" name="Stealth Screen" stackable="True" address="1,9,6" />
   <item id="8D5" name="Mana Jammer II" stackable="True" address="1,9,6" />
@@ -8603,8 +8755,8 @@
   <item id="92C" name="Tranquilizer" stackable="False" address="1,9,6" />
   <item id="92D" name="Turbo Charger" stackable="False" address="1,9,6" />
   <item id="92E" name="Schurzen" stackable="False" address="1,9,6" />
-  <item id="92F" name="Dynamo" stackable="False" address="1,9,6" />
-  <item id="930" name="Condenser" stackable="False" address="1,9,6" />
+  <item id="92F" name="Dynamo" stackable="True" address="1,9,6" />
+  <item id="930" name="Condenser" stackable="True" address="1,9,6" />
   <item id="931" name="Optic Fiber" stackable="False" address="1,9,6" />
   <item id="932" name="Economizer" stackable="False" address="1,9,6" />
   <item id="969" name="Flame Holder" stackable="True" address="1,9,6" />
