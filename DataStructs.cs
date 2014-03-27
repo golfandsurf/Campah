@@ -27,7 +27,7 @@ namespace CampahApp
     //put literals here. It's a work in progress...
     public static class Constants
     {
-        public const String BIDVAL_SIG = "8b0d????????33c084db";
+        public const String BIDVAL_SIG = "8b0d????????33d284db";
         public const int BIDVAL_OFFSET = 0x28;
         
         //public const String AH_SIG = "A3 ?? ?? ?? ?? EB 06 89 1D ?? ?? ?? ?? 39 1D ?? ?? ?? ?? 75 22 6A 24 E8"; //h1pp0 sig
