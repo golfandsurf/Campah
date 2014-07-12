@@ -54,7 +54,7 @@ namespace CampahApp
             {
                 //CheckUpdate();  //No longer supported
             }
-            String[] ffacever = FileVersionInfo.GetVersionInfo("FFACE.dll").FileVersion.Split(',');
+            String[] ffacever = FileVersionInfo.GetVersionInfo("FFACE.dll").FileVersion.Split('.');
             for (int i = 0; i < ffacever.Length; i++)
             {
                 if(int.Parse(ffacever[i]) < REQUIRE_FFACE_VER[i])
