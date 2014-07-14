@@ -40,31 +40,20 @@ namespace CampahApp
         public MainWindow()
         {
             InitializeComponent();
-            int[] REQUIRE_FFACE_VER = { 4, 1, 0, 24 };
 
-
-            this.Height = Properties.Settings.Default.WindowSize.Height;
-            this.Width = Properties.Settings.Default.WindowSize.Width;
-            this.Top = Properties.Settings.Default.WindowLocation.Y;
-            this.Left = Properties.Settings.Default.WindowLocation.X;
+            Height = Properties.Settings.Default.WindowSize.Height;
+            Width = Properties.Settings.Default.WindowSize.Width;
+            Top = Properties.Settings.Default.WindowLocation.Y;
+            Left = Properties.Settings.Default.WindowLocation.X;
             CampahStatus.SetStatus("Loading Settings", Modes.Stopped);
             settingsManager = new FileIO(tbBuyItemSelect);
             settingsManager.loadSettingsXML();
-            if (CampahStatus.Instance.AutomaticUpdates && (App.mArgs.Length == 0 || App.mArgs[0] != "updated"))
-            {
-                //CheckUpdate();  //No longer supported
-            }
-            String[] ffacever = FileVersionInfo.GetVersionInfo("FFACE.dll").FileVersion.Split('.');
-            for (int i = 0; i < ffacever.Length; i++)
-            {
-                if(int.Parse(ffacever[i]) < REQUIRE_FFACE_VER[i])
-                {
-                    MessageBox.Show("Campah Requires FFACE.dll version 4.1.0.24 or higher.  Please download the latest version from ffevo forums");
-                    Application.Current.Shutdown();
-                }
-            }
+
             if (File.Exists("Updater.exe"))
+            {
                 File.Delete("Updater.exe");
+            }
+
             selectProcess();
             rtb_chatlog.Document = Chatlog.Instance.chatlog;            
         }
