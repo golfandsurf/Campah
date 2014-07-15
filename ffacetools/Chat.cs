@@ -16,7 +16,7 @@ namespace FFACETools {
 			/// </summary>
 			public class ChatLine {
 				/// <summary>
-				/// Raw String array containing the strings split from one line of the FFXI chatlog.
+				/// Raw String array containing the strings split from one line of the FFXI _chatLog.
 				/// </summary>
 				public String[] RawString { get; set; }
 				/// <summary>
@@ -601,7 +601,7 @@ namespace FFACETools {
 			} //  @ public static String CleanLine(String line, LineSettings ls)
 
 			/// <summary>
-			/// Cleans Timestamp plugin's addition to the chatlog. (Call before stripping color codes)
+			/// Cleans Timestamp plugin's addition to the _chatLog. (Call before stripping color codes)
 			/// </summary>
 			/// <param name="s">String to strip Timestamp from (if present).</param>
 			/// <returns>String containing the modified line.</returns>

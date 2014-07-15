@@ -1,42 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace WPFAutoCompleteTextbox
+﻿namespace CampahApp
 {
     public class AutoCompleteEntry
     {
-        private string[] keywordStrings;
-        private string displayString;
+        private string[] _keywordStrings;
+        private string _displayString;
 
         public string[] KeywordStrings
         {
-            get
-            {
-                if (keywordStrings == null)
-                {
-                    keywordStrings = new string[] { displayString };
-                }
-                return keywordStrings;
-            }
+            get { return _keywordStrings ?? (_keywordStrings = new[] {_displayString}); }
         }
 
         public string DisplayName
         {
-            get { return displayString; }
-            set { displayString = value; }
+            get { return _displayString; }
+            set { _displayString = value; }
         }
 
         public AutoCompleteEntry(string name, params string[] keywords)
         {
-            displayString = name;
-            keywordStrings = keywords;
+            _displayString = name;
+            _keywordStrings = keywords;
         }
 
         public override string ToString()
         {
-            return displayString;
+            return _displayString;
         }
     }
 }

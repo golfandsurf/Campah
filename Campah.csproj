@@ -74,9 +74,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AhItem.cs" />
+    <Compile Include="AhTarget.cs" />
+    <Compile Include="AuctionHouse.cs" />
+    <Compile Include="CampahStatus.cs" />
+    <Compile Include="ChatAlert.cs" />
+    <Compile Include="ChatInputBuffer.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Converters\AddEnabledConverter.cs" />
+    <Compile Include="Converters\AhParseEnabledConverter.cs" />
+    <Compile Include="Converters\ButtonTextConverter.cs" />
+    <Compile Include="Converters\DelayConverter.cs" />
+    <Compile Include="Converters\DifferenceConverter.cs" />
+    <Compile Include="Converters\FormattedMultiTextConverter.cs" />
+    <Compile Include="Converters\HintConverter.cs" />
+    <Compile Include="Converters\ItemContainerWidthConverter.cs" />
+    <Compile Include="Converters\ItemIconConverter.cs" />
+    <Compile Include="Converters\MaxConverter.cs" />
+    <Compile Include="Converters\MultiVisibilityConverter.cs" />
+    <Compile Include="Converters\ProjectedCostConverter.cs" />
+    <Compile Include="Converters\TotalSpentConverter.cs" />
+    <Compile Include="CurrentSelection.cs" />
+    <Compile Include="FfxiahItem.cs" />
     <Compile Include="FileIO.cs" />
     <Compile Include="Interaction.cs" />
+    <Compile Include="Converters\LifetimeSpentConverter.cs" />
+    <Compile Include="ItemRequest.cs" />
+    <Compile Include="RunningData.cs" />
+    <Compile Include="Converters\StackConverter.cs" />
     <Compile Include="ThreadManager.cs" />
+    <Compile Include="UpdateConstants.cs" />
+    <Compile Include="UpdateData.cs" />
     <Compile Include="Updater.xaml.cs">
       <DependentUpon>Updater.xaml</DependentUpon>
     </Compile>
@@ -99,8 +127,8 @@
     <Compile Include="BinSearch.cs" />
     <Compile Include="Chatlog.cs" />
     <Compile Include="NumericSpinnerControl.cs" />
-    <Compile Include="Converters.cs" />
-    <Compile Include="DataStructs.cs" />
+    <Compile Include="Converters\AhParseButtonConverter.cs" />
+    <Compile Include="Modes.cs" />
     <Compile Include="ffacetools\Chat.cs" />
     <Compile Include="ffacetools\enums.cs" />
     <Compile Include="ffacetools\FFACETools.cs" />

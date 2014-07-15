@@ -1,30 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
 using System.Globalization;
-using System.Linq;
-using System.Text;
+using System.IO;
 using System.Text.RegularExpressions;
-using System.Threading;
-using System.Windows.Threading;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Reflection;
 using System.Net;
 using System.ComponentModel;
 using System.Xml;
-using WPFAutoCompleteTextbox;
 using FFACETools;
-using PandyProductions;
 using Microsoft.Win32;
 
 namespace CampahApp
@@ -32,7 +17,7 @@ namespace CampahApp
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         Interaction interactionManager = new Interaction();
         FileIO settingsManager;
@@ -46,7 +31,7 @@ namespace CampahApp
             Top = Properties.Settings.Default.WindowLocation.Y;
             Left = Properties.Settings.Default.WindowLocation.X;
             CampahStatus.SetStatus("Loading Settings", Modes.Stopped);
-            settingsManager = new FileIO(tbBuyItemSelect);
+            settingsManager = new FileIO(TbBuyItemSelect);
             settingsManager.loadSettingsXML();
 
             if (File.Exists("Updater.exe"))
@@ -54,70 +39,79 @@ namespace CampahApp
                 File.Delete("Updater.exe");
             }
 
-            selectProcess();
-            rtb_chatlog.Document = Chatlog.Instance.chatlog;            
+            SelectProcess();
+            rtb_chatlog.Document = Chatlog.Instance.ChatLog;            
         }
 
-        private void setMaxBid(int maxbid)
+        private void SetMaxBid(int maxbid)
         {
             nb_maxBid.Value = maxbid;
         }
 
-        private void setMaxBidTag(bool isThinking)
+        private void SetMaxBidTag(bool isThinking)
         {
             ffxiah_button.Focusable = isThinking;
         }
 
-        private void setMinInc(int maxbid)
+        private void SetMinInc(int maxbid)
         {
             if (CampahStatus.Instance.OneClickMin < 100)
             {
                 double minCoEff = CampahStatus.Instance.OneClickMin / 100.0;
                 nb_minBid.Value = maxbid * minCoEff;
                 nb_bidInc.Value = (int)((maxbid * (1 - minCoEff)) / CampahStatus.Instance.OneClickInc);
-                if (nb_bidInc.Value > 99 && nb_bidInc.Value.ToString().EndsWith("99"))
+                if (nb_bidInc.Value > 99 && nb_bidInc.Value.ToString(CultureInfo.InvariantCulture).EndsWith("99"))
+                {
                     nb_bidInc.Value++;
+                }
             }
         }
 
-        private void deleteold()
+        private void Deleteold()
         {
-            RemoveOldFiles(Environment.CurrentDirectory + @"\"+UpdateConstants.UPDATE_FOLDER);
+            RemoveOldFiles(Environment.CurrentDirectory + @"\"+UpdateConstants.UpdateFolder);
         }
 
-        private void savesettings()
+        private void SaveSettings()
         {
-            Properties.Settings.Default.WindowSize = new System.Drawing.Size((int)this.Width, (int)this.Height);
-            Properties.Settings.Default.WindowLocation = new System.Drawing.Point((int)this.Left, (int)this.Top);
+            Properties.Settings.Default.WindowSize = new System.Drawing.Size((int)Width, (int)Height);
+            Properties.Settings.Default.WindowLocation = new System.Drawing.Point((int)Left, (int)Top);
+            
             if (CampahStatus.Instance.CurrentPath != Environment.CurrentDirectory)
+            {
                 Properties.Settings.Default.lastfile = CampahStatus.Instance.CurrentPath;
+            }
+
             Properties.Settings.Default.Save();
         }
 
-        public void RemoveOldFiles(String UpdateFileDir)
+        public void RemoveOldFiles(String updateFileDir)
         {
-            /*
-                Root directory
-             */
-            DirectoryInfo RootDirectory = new DirectoryInfo(Environment.CurrentDirectory);
+            // Root directory 
+            var rootDirectory = new DirectoryInfo(Environment.CurrentDirectory);
 
-            foreach (FileInfo OldFile in RootDirectory.GetFiles("*.old"))
-                OldFile.Delete();
-            /*Sub directories*/
-            foreach (DirectoryInfo Directory in RootDirectory.GetDirectories())
+            foreach (FileInfo oldFile in rootDirectory.GetFiles("*.old"))
             {
-                foreach (FileInfo OldFile in Directory.GetFiles("*.old"))
-                    OldFile.Delete();
-                /*Delete our temp directory*/
-                if (Directory.FullName == UpdateFileDir)
+                oldFile.Delete();
+            }
+
+            // Sub directories
+            foreach (var directory in rootDirectory.GetDirectories())
+            {
+                foreach (var oldFile in directory.GetFiles("*.old"))
+                {
+                    oldFile.Delete();
+                }
+
+                // Delete our temp directory
+                if (directory.FullName == updateFileDir)
                 {
                     try
                     {
-                        Directory.Delete(true);
+                        directory.Delete(true);
                     }
                     catch (IOException)
                     {
-                        continue;
                     }
                 }
             }
@@ -125,29 +119,26 @@ namespace CampahApp
 
         public void OpenUpdater(StreamReader info)
         {
-            Updater UD = new Updater(info);
-            UD.ShowDialog();
-            UD.Close();
-            this.Close();
+            var ud = new Updater(info);
+            ud.ShowDialog();
+            ud.Close();
+            Close();
         }
 
-        public bool DownloadUpdate(String File, String Hash)
+        public bool DownloadUpdate(string file, string hash)
         {
             try
             {
-                
-                WebClient Client = new WebClient();
-                DirectoryInfo TempDir = new DirectoryInfo(UpdateConstants.UPDATE_FOLDER);
-                if (!TempDir.Exists)
-                    TempDir.Create();
-                Client.DownloadFile(UpdateConstants.UPDATE_URL + "\\" + File, string.Format("{0}\\Package", TempDir));
-                Client.Dispose();
-                if (DTHasher.GetMD5Hash(string.Format("{0}\\Package\\", TempDir)) == Hash)
+                var client = new WebClient();
+                var tempDir = new DirectoryInfo(UpdateConstants.UpdateFolder);
+                if (!tempDir.Exists)
                 {
-                    return true;
+                    tempDir.Create();
                 }
-                else 
-                    return false;
+
+                client.DownloadFile(UpdateConstants.UpdateUrl + "\\" + file, string.Format("{0}\\Package", tempDir));
+                client.Dispose();
+                return DTHasher.GetMD5Hash(string.Format("{0}\\Package\\", tempDir)) == hash;
             }
             catch
             {
@@ -161,11 +152,11 @@ namespace CampahApp
             try
             {
                 CampahStatus.Instance.Status = "Checking for Updates...";
-                HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(UpdateConstants.UPDATE_URL+"update.txt");
-                HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+                var req = (HttpWebRequest)WebRequest.Create(UpdateConstants.UpdateUrl+"update.txt");
+                var response = (HttpWebResponse)req.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    StreamReader cu = new StreamReader(response.GetResponseStream(), System.Text.Encoding.GetEncoding("utf-8"));
+                    var cu = new StreamReader(response.GetResponseStream(), System.Text.Encoding.GetEncoding("utf-8"));
                     String[] latestversion = cu.ReadLine().Split('.');
                     String[] currentverstion = CampahStatus.Instance.Version.Split('.');
                     cu.Close();
@@ -177,8 +168,8 @@ namespace CampahApp
 
                     for (int i = 0; i < latestversion.Length; i++)
                     {
-                        int subverL = -2;
-                        int subverC = -1;
+                        int subverL;
+                        int subverC;
                         int.TryParse(latestversion[i], out subverL);
                         int.TryParse(currentverstion[i], out subverC);
                         if (subverL > subverC)
@@ -192,78 +183,56 @@ namespace CampahApp
                 else
                 {
                     CampahStatus.Instance.Status = "Could not contact update server";
-                    return;
                 }
 
             }
             catch (WebException)
             {
                 CampahStatus.Instance.Status = "Could not contact update server";
-                return;
             }
         }
 
-        int check = 0;
-        string lastitem = "";
-        void ffxiah_lookup_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        public void SelectProcess()
         {
-            String cursel = CurrentSelection.Name;
-            if (AuctionHouse.items.ContainsKey(CurrentSelection.Name))
+            using (var p = new ProcessSelector())
             {
-                if (lastitem == CurrentSelection.Name)
-                    check++;
-                else
-                    check = 0;
-                if (check == 3)
+                switch (p.Processes.Length)
                 {
-                   // AHItem item = AuctionHouse.GetItem(CurrentSelection.Name);
-                    //CampahStatus.Instance.Price = FFXIAH.LookupMedian(item.ID, FFACE_INSTANCE.Instance.Player.PlayerServerID, item.Stackable).ToString() + "g";
+                    case 1:
+                        CampahStatus.Instance.Process = p.processes[0];
+                        break;
+                    case 0:
+                        CampahStatus.Instance.Status = "No FFXI Processes Found";
+                        return;
+                    default:
+                        p.ShowDialog();
+                        break;
                 }
-                lastitem = CurrentSelection.Name;
-            }
-        }
 
-        public void selectProcess()
-        {
-            using (ProcessSelector p = new ProcessSelector())
-            {
-                //this.Topmost = false;
-                if (p.Processes.Length == 1)// && autoAttach)
+                if (CampahStatus.Instance.Process == null)
                 {
-                    CampahStatus.Instance.Process = p.processes[0];
-                }
-                else if (p.Processes.Length == 0)// && autoAttach)
-                {
-                    CampahStatus.Instance.Status = "No FFXI Processes Found";
                     return;
                 }
-                else
-                    p.ShowDialog();
-                //this.Topmost = (bool)cb_alwaystop.IsChecked;
-                if (CampahStatus.Instance.Process != null)
-                {
-                    if (FFACE_INSTANCE.Instance != null)
-                        FFACE_INSTANCE.Instance = null;  //needs to dispose of old
-                    FFACE_INSTANCE.Instance = new FFACE(CampahStatus.Instance.Process.Id);
-                    CampahStatus.SetStatus("Attached to " + CampahStatus.Instance.Process.MainWindowTitle);
-                }
+
+                FFACEInstance.Instance = null; //needs to dispose of old
+                FFACEInstance.Instance = new FFACE(CampahStatus.Instance.Process.Id);
+                CampahStatus.SetStatus("Attached to " + CampahStatus.Instance.Process.MainWindowTitle);
             }
         }
 
-        private void createAHResourcesXML()
+        private void CreateAhResourcesXml()
         {
-//            GotoMenu("1");
+            //GotoMenu("1");
             CampahStatus.SetStatus("Updating AH Database.  Please Wait...", Modes.Updating);
-            AuctionHouse.items.Clear();
+            AuctionHouse.Items.Clear();
             interactionManager.TraverseMenu("1");
             interactionManager.CloseMenu();
-            XmlTextWriter tw = new XmlTextWriter("ahresources.xml", null);
-            tw.Formatting = Formatting.Indented;
+            var tw = new XmlTextWriter("ahresources.xml", null) {Formatting = Formatting.Indented};
             tw.WriteStartDocument();
             tw.WriteStartElement("AHStructure");
             tw.WriteComment("This XML was automatically generated by Campah.exe");
             tw.WriteComment("Editing this XML may cause Campah to no longer function properly");
-            foreach (AHItem item in AuctionHouse.items.Values)
+            foreach (AhItem item in AuctionHouse.Items.Values)
             {
                 tw.WriteStartElement("item");
                 tw.WriteAttributeString("id", item.ID.ToString("X2"));
@@ -276,33 +245,36 @@ namespace CampahApp
             tw.WriteEndDocument();
             tw.Flush();
             tw.Close();
-            interactionManager.StopBuying("Finished Updating Successfully", createAHResourcesXML);
+            interactionManager.StopBuying("Finished Updating Successfully", CreateAhResourcesXml);
             settingsManager.loadAHResourcesXML();
         }
 
-        private void tbBuyItemSelect_KeyUp(object sender, KeyEventArgs e)
+        private void TbBuyItemSelectKeyUp(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.Down)
+            if (e.Key != Key.Down)
             {
-                AutoCompleteTextBox acb = sender as AutoCompleteTextBox;
-                if (acb.comboBox.SelectedIndex < 0)
-                    acb.comboBox.SelectedIndex = 0;
+                return;
+            }
+
+            var acb = sender as AutoCompleteTextBox;
+            if (acb != null && acb.ComboBox.SelectedIndex < 0)
+            {
+                acb.ComboBox.SelectedIndex = 0;
             }
         }
 
-        private void button_AddBuyItem_Click(object sender, RoutedEventArgs e)
+        private void ButtonAddBuyItemClick(object sender, RoutedEventArgs e)
         {
-            AHItem item;
-            if (string.IsNullOrEmpty(tbBuyItemSelect.Text))
+            if (string.IsNullOrEmpty(TbBuyItemSelect.Text))
+            {
                 return;
-            if ((item = AuctionHouse.GetItem(tbBuyItemSelect.Text.Trim())) != null)
+            }
+            if ((AuctionHouse.GetItem(TbBuyItemSelect.Text.Trim())) != null)
             {
                 try
                 {
-                    RunningData.Instance.BidList.Add(new ItemRequest((int)nb_minBid.Value, (int)nb_maxBid.Value,
-                            (int)nb_bidInc.Value, (int)nb_quantity.Value, (bool)cb_stackable.IsChecked,
-                            AuctionHouse.GetItem(tbBuyItemSelect.Text)));
-                    RunningData.Instance.calculateProjectedCost();
+                    RunningData.Instance.BidList.Add(new ItemRequest((int)nb_minBid.Value, (int)nb_maxBid.Value,(int)nb_bidInc.Value, (int)nb_quantity.Value, cb_stackable.IsChecked != null && (bool)cb_stackable.IsChecked, AuctionHouse.GetItem(TbBuyItemSelect.Text)));
+                    RunningData.Instance.CalculateProjectedCost();
                 }
                 catch
                 {
@@ -317,24 +289,31 @@ namespace CampahApp
 
         private void button_RemoveItem_Click(object sender, RoutedEventArgs e)
         {
-            if (CampahStatus.Instance.Mode == Modes.Stopped)
+            if (CampahStatus.Instance.Mode != Modes.Stopped)
             {
-                ItemRequest m = (sender as Button).Tag as ItemRequest;
-                RunningData.Instance.BidList.Remove(m);
-                RunningData.Instance.calculateProjectedCost();
+                return;
             }
+
+            var button = sender as Button;
+            if (button != null)
+            {
+                var i = button.Tag as ItemRequest;
+                RunningData.Instance.BidList.Remove(i);
+            }
+
+            RunningData.Instance.CalculateProjectedCost();
         }
 
         private void button_StartStop_Click(object sender, RoutedEventArgs e)
         {
-            Button ctrl = sender as Button;
-            if (CampahStatus.Instance.Mode == Modes.Stopped)
+            switch (CampahStatus.Instance.Mode)
             {
-                interactionManager.StartBuying();
-            }
-            else if (CampahStatus.Instance.Mode == Modes.Buying)
-            {
-                interactionManager.StopBuying();
+                case Modes.Stopped:
+                    interactionManager.StartBuying();
+                    break;
+                case Modes.Buying:
+                    interactionManager.StopBuying();
+                    break;
             }
         }
 
@@ -348,10 +327,10 @@ namespace CampahApp
 
         private void textBox_ChatlogInput_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            TextBox input = (TextBox)sender;
+            var input = (TextBox)sender;
             if (e.Key == Key.Enter)
             {
-                FFACE_INSTANCE.Instance.Windower.SendString(input.Text);
+                FFACEInstance.Instance.Windower.SendString(input.Text);
                 ChatInputBuffer.AddLine(input.Text);
             }
             
@@ -406,20 +385,28 @@ namespace CampahApp
 
         private void button_RemoveAHTarget_Click(object sender, RoutedEventArgs e)
         {
-            if (CampahStatus.Instance.Mode == Modes.Stopped)
-                RunningData.Instance.AHTargetList.Remove((sender as Button).Tag as AHTarget);
+            if (CampahStatus.Instance.Mode != Modes.Stopped)
+            {
+                return;
+            }
+
+            var button = sender as Button;
+            if (button != null)
+            {
+                RunningData.Instance.AhTargetList.Remove(button.Tag as AhTarget);
+            }
         }
 
         private void button_AddAHTarget_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(tb_ahtargetname.Text))
             {
-                string target = FFACE_INSTANCE.Instance.Target.Name;
-                if (!string.IsNullOrEmpty(target.Trim()) && !RunningData.Instance.AHTargetList.Contains(new AHTarget(target)))
-                    RunningData.Instance.AHTargetList.Add(new AHTarget(target));
+                string target = FFACEInstance.Instance.Target.Name;
+                if (!string.IsNullOrEmpty(target.Trim()) && !RunningData.Instance.AhTargetList.Contains(new AhTarget(target)))
+                    RunningData.Instance.AhTargetList.Add(new AhTarget(target));
             }
             else
-                RunningData.Instance.AHTargetList.Add(new AHTarget(tb_ahtargetname.Text));
+                RunningData.Instance.AhTargetList.Add(new AhTarget(tb_ahtargetname.Text));
             tb_ahtargetname.Clear();
         }
 
@@ -440,66 +427,77 @@ namespace CampahApp
         {
             if (CampahStatus.Instance.Mode == Modes.Stopped)
             {
-                MessageBoxResult result = MessageBox.Show("The process takes about 3-10 mins to complete, depending on your computer's speed.\r\nMake sure you are within click range of an auction house and do not press any keys while it is working\r\n\r\nContinuing this operation will overwrite the current database, would you like to continue?", "Confirm Overwrite", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var result = MessageBox.Show("The process takes about 3-10 mins to complete, depending on your computer's speed.\r\nMake sure you are within click range of an auction house and do not press any keys while it is working\r\n\r\nContinuing this operation will overwrite the current database, would you like to continue?", "Confirm Overwrite", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
-                    ThreadManager.threadRunner(createAHResourcesXML);
+                {
+                    ThreadManager.ThreadRunner(CreateAhResourcesXml);
+                }
             }
             else
             {
-                interactionManager.StopBuying("Stopped updating, reverting to previous database.", createAHResourcesXML);
+                interactionManager.StopBuying("Stopped updating, reverting to previous database.", CreateAhResourcesXml);
             }
         }
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            savesettings();
+            SaveSettings();
         }
 
         private void button_ResetWindow_Click(object sender, RoutedEventArgs e)
         {
-            this.Height = 310; this.Width = 700; this.Top = 100; this.Left = 100;
-            savesettings();
+            Height = 310; 
+            Width = 700; 
+            Top = 100; 
+            Left = 100;
+            SaveSettings();
         }
 
         private void button_DefaultSettings_Click(object sender, RoutedEventArgs e)
         {
-            settingsManager.defaultcampahsettings();
+            settingsManager.Defaultcampahsettings();
         }
 
         private void NumericSpinnerControl_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            ItemRequest req = (ItemRequest)((NumericSpinnerControl)sender).Tag;
+            var req = (ItemRequest)((NumericSpinnerControl)sender).Tag;
             req.NotifyPropertyChanged("Maximum");
             req.NotifyPropertyChanged("Minimum");
             req.NotifyPropertyChanged("Quantity");
             req.NotifyPropertyChanged("Increment");
         }
 
-        private void button_Remove_Click(object sender, RoutedEventArgs e)
+        private void ButtonRemoveClick(object sender, RoutedEventArgs e)
         {
             RunningData.Instance.BidList.Clear();
         }
 
-        private void button_Load_Click(object sender, RoutedEventArgs e)
+        private void ButtonLoadClick(object sender, RoutedEventArgs e)
         {
             FileDialog dlg = new OpenFileDialog();
             dlg.Filter = Constants.CAMPAH_EXTENSION;
             dlg.InitialDirectory = CampahStatus.Instance.CurrentPath; // FileName;
             dlg.Title = "Open File";
             dlg.AddExtension = true;
-            if ((bool)dlg.ShowDialog())
-                settingsManager.loadBidList(dlg.FileName);
+            var showDialog = dlg.ShowDialog();
+            if (showDialog != null && showDialog.Value)
+            {
+                settingsManager.LoadBidList(dlg.FileName);
+            }
         }
 
-        private void button_Save_Click(object sender, RoutedEventArgs e)
+        private void ButtonSaveClick(object sender, RoutedEventArgs e)
         {
             FileDialog dlg = new SaveFileDialog();
             dlg.Filter = Constants.CAMPAH_EXTENSION;
             dlg.InitialDirectory = CampahStatus.Instance.CurrentPath; // FileName;
             dlg.Title = "Save File";
             dlg.AddExtension = true;
-            if ((bool)dlg.ShowDialog())
+            var showDialog = dlg.ShowDialog();
+            if (showDialog != null && showDialog.Value)
+            {
                 settingsManager.saveBidList(dlg.FileName);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -508,11 +506,11 @@ namespace CampahApp
             {
                 CampahStatus.Instance.CurrentPath = Properties.Settings.Default.lastfile;
                 if (CampahStatus.Instance.OpenLast)
-                    settingsManager.loadBidList(CampahStatus.Instance.CurrentPath);
+                    settingsManager.LoadBidList(CampahStatus.Instance.CurrentPath);
             }
             if (App.mArgs != null && App.mArgs.Length > 0 && App.mArgs[0] == "updated")
             {
-                ThreadManager.threadRunner(deleteold);
+                ThreadManager.ThreadRunner(Deleteold);
             }
         }
 
@@ -528,7 +526,7 @@ namespace CampahApp
 
         private void button_Attack_Click(object sender, RoutedEventArgs e)
         {
-                selectProcess();
+                SelectProcess();
         }
 
         private void rtb_chatlog_MouseLeave(object sender, MouseEventArgs e)
@@ -539,19 +537,19 @@ namespace CampahApp
         private delegate void ChangeTagDelegate(bool isThinking);
         private delegate void ChangeMaxDelegate(int maxbid);
         private delegate void ChangeMinIncDelegate(int maxbid);
-        private KeyValuePair<AHItem, bool> lastlookupitem;
-        private void lookupPriceXIAH()
+        private KeyValuePair<AhItem, bool> _lastlookupitem;
+        private void LookupPriceXiAh()
         {
-            AHItem item;
-            int price = -1;
+            AhItem item;
+            var price = -1;
             if ((item = AuctionHouse.GetItem(RunningData.Instance.CurrentItemText.Trim())) != null)
             {
                 CampahStatus.SetStatus("Looking up price for " + item.Name + "...");
-                this.Dispatcher.BeginInvoke(new ChangeTagDelegate(setMaxBidTag), new object[] { true });
+                this.Dispatcher.BeginInvoke(new ChangeTagDelegate(SetMaxBidTag), new object[] { true });
                 int sid;
                 try
                 {
-                    sid = FFACE_INSTANCE.Instance.Player.GetSID;
+                    sid = FFACEInstance.Instance.Player.GetSID;
                 }
                 catch
                 {
@@ -563,111 +561,31 @@ namespace CampahApp
             }
             if (price > -1)
             {
-                if (lastlookupitem.Key == item && lastlookupitem.Value == RunningData.Instance.CurrentItemStackable)
+                if (_lastlookupitem.Key == item && _lastlookupitem.Value == RunningData.Instance.CurrentItemStackable)
                 {
-                    this.Dispatcher.BeginInvoke(new ChangeMinIncDelegate(setMinInc), new object[] { price });
+                    Dispatcher.BeginInvoke(new ChangeMinIncDelegate(SetMinInc), new object[] { price });
                 }
                 else
                 {
                     CampahStatus.SetStatus("Current median price for " + item.Name + " is " + price + "g.");
-                    this.Dispatcher.BeginInvoke(new ChangeMaxDelegate(setMaxBid), new object[] { price });
+                    Dispatcher.BeginInvoke(new ChangeMaxDelegate(SetMaxBid), new object[] { price });
                 }
             }
-            lastlookupitem = new KeyValuePair<AHItem, bool>(item, RunningData.Instance.CurrentItemStackable);
-            this.Dispatcher.BeginInvoke(new ChangeTagDelegate(setMaxBidTag), new object[] { false });
+            _lastlookupitem = new KeyValuePair<AhItem, bool>(item, RunningData.Instance.CurrentItemStackable);
+            Dispatcher.BeginInvoke(new ChangeTagDelegate(SetMaxBidTag), new object[] { false });
         }
 
         private void ffxiAH_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (!ffxiah_button.Focusable)
-                ThreadManager.threadRunner(lookupPriceXIAH);
+            {
+                ThreadManager.ThreadRunner(LookupPriceXiAh);
+            }
         }
     }
 
-    public static class FFACE_INSTANCE
+    public static class FFACEInstance
     {
         public static FFACE Instance { get; set; }
-    }
-
-    public class RunningData : INotifyPropertyChanged
-    {
-        public ObservableCollection<ItemRequest> BidList { get; set; }
-        public ObservableCollection<AHTarget> AHTargetList { get; set; }
-        public Queue<ItemRequest> TrashCan { get; set; }
-        int projectedCost;
-        int totalSpent;
-        DispatcherTimer trashcollector;
-        public static RunningData Instance { get;set; }
-        public string CurrentItemText { get; set; }
-        public bool CurrentItemStackable { get; set; }
-
-        static RunningData()
-        {
-            Instance = new RunningData();
-        }
-        
-        public RunningData()
-        {
-            CurrentItemStackable = false;
-            CurrentItemText = "";
-            BidList = new ObservableCollection<ItemRequest>();
-            AHTargetList = new ObservableCollection<AHTarget>();
-            TrashCan = new Queue<ItemRequest>();
-            trashcollector = new DispatcherTimer();
-            trashcollector.Interval = TimeSpan.FromMilliseconds(1000);
-            trashcollector.Tick += new EventHandler(trashcollector_Tick);
-            trashcollector.Start();
-        }
-
-        void trashcollector_Tick(object sender, EventArgs e)
-        {
-            while (TrashCan.Count > 0)
-            {
-                BidList.Remove(TrashCan.Dequeue());
-            }
-        }
-
-        public void calculateProjectedCost()
-        {
-            ProjectedCost = 0;
-            foreach (ItemRequest item in BidList)
-                ProjectedCost += (item.Maximum*item.Quantity);
-        }
-
-        public int ProjectedCost
-        {
-            get
-            {
-                return projectedCost;
-            }
-            set
-            {
-                projectedCost = value;
-                NotifyPropertyChanged("ProjectedCost");
-            }
-        }
-
-        public int TotalSpent
-        {
-            get
-            {
-                return totalSpent;
-            }
-            set
-            {
-                totalSpent = value;
-                NotifyPropertyChanged("TotalSpent");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,
-                    new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

@@ -1,28 +1,28 @@
 ﻿<Window x:Class="CampahApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:actextbox="clr-namespace:WPFAutoCompleteTextbox"
         xmlns:campah="clr-namespace:CampahApp"
         xmlns:conv="clr-namespace:Converters"
+        xmlns:converters="clr-namespace:CampahApp.Converters"
         DataContext="{Binding Source={x:Static campah:CampahStatus.Instance}}"
         Title="{Binding Title}" Height="310" Width="700" Icon="/Campah;component/images/4401.ico" Closing="Window_Closing" 
         Topmost="{Binding AlwaysOnTop}" Loaded="Window_Loaded">
     <Window.Resources>
-        <conv:AHParseEnabledConverter x:Key="ahparseenabledconverter" />
-        <conv:AddEnabledConverter x:Key="addenabledconverter" />
-        <conv:FormattedMultiTextConverter x:Key="multitxtconverter" />
+        <converters:AhParseEnabledConverter x:Key="ahparseenabledconverter" />
+        <converters:AddEnabledConverter x:Key="addenabledconverter" />
+        <converters:FormattedMultiTextConverter x:Key="multitxtconverter" />
         <conv:ProjectedCostConverter x:Key="projectedcostconverter" />
-        <conv:TotalSpentConverter x:Key="totalspentconverter" />
-        <conv:ButtonTextConverter x:Key="buttontextconverter" />
-        <conv:AHParseButtonConverter x:Key="ahparsebuttonconverter" />
-        <conv:HintConverter x:Key="hintconverter" />
-        <conv:DelayConverter x:Key="delayconverter" />
-        <conv:StackConverter x:Key="stackconverter" />
-        <conv:ItemContainerWidthConverter x:Key="itemcontainerwidthconverter" />
-        <conv:ItemIconConverter x:Key="itemiconconverter" />
-        <conv:DifferenceConverter x:Key="diffconverter" />
+        <converters:TotalSpentConverter x:Key="totalspentconverter" />
+        <converters:ButtonTextConverter x:Key="buttontextconverter" />
+        <converters:AhParseButtonConverter x:Key="ahparsebuttonconverter" />
+        <converters:HintConverter x:Key="hintconverter" />
+        <converters:DelayConverter x:Key="delayconverter" />
+        <converters:StackConverter x:Key="stackconverter" />
+        <converters:ItemContainerWidthConverter x:Key="itemcontainerwidthconverter" />
+        <converters:ItemIconConverter x:Key="itemiconconverter" />
+        <converters:DifferenceConverter x:Key="diffconverter" />
         <conv:MaxConverter x:Key="maxconverter" />
-        <conv:MultiVisibilityConverter x:Key="multivisibilityconverter" />
+        <converters:MultiVisibilityConverter x:Key="multivisibilityconverter" />
         <Style x:Key="ItemContStyle" TargetType="ListViewItem">
             <Style.Resources>
                 <LinearGradientBrush x:Key="MouseOverBrush" StartPoint="0.5, 0" EndPoint="0.5, 1">
@@ -257,7 +257,7 @@
                                         <RowDefinition />
                                     </Grid.RowDefinitions>
                                     <TextBlock Text="Item Name" />
-                                    <actextbox:AutoCompleteTextBox Grid.Row="1" Height="23" x:Name="tbBuyItemSelect" DelayTime="500" Threshold="2" KeyUp="tbBuyItemSelect_KeyUp" VerticalAlignment="Top" />
+                                    <campah:AutoCompleteTextBox Grid.Row="1" Height="23" x:Name="TbBuyItemSelect" DelayTime="500" Threshold="2" KeyUp="TbBuyItemSelectKeyUp" VerticalAlignment="Top" />
                                 </Grid>
                                 <Grid Grid.Column="1" Grid.Row="1">
                                     <Grid.RowDefinitions>
@@ -356,7 +356,7 @@
                                     </campah:NumericSpinnerControl>
                                 </Grid>
                                 <Grid Grid.Row="5" Grid.Column="1" Margin="4">
-                                    <Button Content="Add" Click="button_AddBuyItem_Click" Panel.ZIndex="7" DataContext="{Binding Source={x:Static campah:CampahStatus.Instance}}" IsEnabled="{Binding Mode,Converter={StaticResource addenabledconverter}}" />
+                                    <Button Content="Add" Click="ButtonAddBuyItemClick" Panel.ZIndex="7" DataContext="{Binding Source={x:Static campah:CampahStatus.Instance}}" IsEnabled="{Binding Mode,Converter={StaticResource addenabledconverter}}" />
                                 </Grid>
                             </Grid>
                         </GroupBox>
@@ -386,7 +386,7 @@
                                         </LinearGradientBrush>
                                     </ToolBar.Background>
                                     <Menu ToolBar.OverflowMode="Never" Background="Transparent">
-                                        <Button Click="button_Save_Click" Margin="-5,0" >
+                                        <Button Click="ButtonSaveClick" Margin="-5,0" >
                                             <Button.Background>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                     <GradientStop Color="#FF3A6196" Offset="1" />
@@ -399,7 +399,7 @@
                                                 </TextBlock>
                                             </Button.Content>
                                         </Button>
-                                        <Button Click="button_Load_Click" Margin="-5,0">
+                                        <Button Click="ButtonLoadClick" Margin="-5,0">
                                             <Button.Background>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                     <GradientStop Color="#FF3A6196" Offset="1" />
@@ -412,7 +412,7 @@
                                                 </TextBlock>
                                             </Button.Content>
                                         </Button>
-                                        <Button Click="button_Remove_Click" Margin="-5,0">
+                                        <Button Click="ButtonRemoveClick" Margin="-5,0">
                                             <Button.Background>
                                                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                                                     <GradientStop Color="#FF3A6196" Offset="1" />
@@ -624,7 +624,7 @@
                                                    HorizontalAlignment="Center" VerticalAlignment="Center" OpacityMask="#64000000" 
                                                    FontSize="10" IsHitTestVisible="False" FontWeight="Bold" />
                                     </Grid>
-                                    <ListView Grid.Row="1" DataContext="{Binding Source={x:Static campah:RunningData.Instance}}" ItemsSource="{Binding AHTargetList}" ItemContainerStyle="{StaticResource ItemContStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                                    <ListView Grid.Row="1" DataContext="{Binding Source={x:Static campah:RunningData.Instance}}" ItemsSource="{Binding AhTargetList}" ItemContainerStyle="{StaticResource ItemContStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.ColumnHeaderContainerStyle>

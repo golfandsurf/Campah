@@ -1,15 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -42,23 +34,15 @@ namespace CampahApp
         private void loadList()
         {
             String[] processTitles = {"pol", "ffxi-boot"};
-            List<Process> p = new List<Process>();
-            foreach (String processTitle in processTitles)
-            {
-                Process[] ps = Process.GetProcessesByName(processTitle);
-                foreach (Process process in ps)
-                {
-                    if (!Regex.IsMatch(process.MainWindowTitle, "(Final Fantasy XI)|(PlayOnline)"))
-                    {
-                        p.Add(process);
-                    }
-                }
-            }
-            this.processes = p.ToArray();
-            processList.ItemsSource = p.ToArray();
+            var p = (from processTitle in processTitles
+                from process in Process.GetProcessesByName(processTitle)
+                where !Regex.IsMatch(process.MainWindowTitle, "(Final Fantasy XI)|(PlayOnline)")
+                select process).ToArray();
+            processes = p;
+            processList.ItemsSource = p;
         }
 
-        private void selectItem()
+        private void SelectItem()
         {
             CampahStatus.Instance.Process = (Process)processList.SelectedValue;
         }
@@ -66,15 +50,15 @@ namespace CampahApp
         public void Dispose() 
         {
             processes = null;
-            this.Close();
+            Close();
         }
 
         private void processList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (processList.SelectedItems.Count > 0)
             {
-                selectItem();
-                this.Close();
+                SelectItem();
+                Close();
             }
         }
 
@@ -83,8 +67,8 @@ namespace CampahApp
             if (e.Key == Key.Enter && processList.SelectedItems.Count > 0)
             {
                 e.Handled = true;
-                selectItem();
-                this.Close();
+                SelectItem();
+                Close();
             }
         }
 

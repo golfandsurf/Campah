@@ -1,111 +1,102 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
-namespace WPFAutoCompleteTextbox
+namespace CampahApp
 {
     /// <summary>
     /// Interaction logic for AutoCompleteTextBox.xaml
     /// </summary>    
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable")]
-    public partial class AutoCompleteTextBox : Canvas
+    public partial class AutoCompleteTextBox
     {
-        #region Members
-        private VisualCollection controls;
-        private TextBox textBox;
-        public ComboBox comboBox;
-        private ObservableCollection<AutoCompleteEntry> autoCompletionList;
-        private System.Timers.Timer keypressTimer;
-        private delegate void TextChangedCallback();
-        private bool insertText;
-        private int delayTime;
-        private int searchThreshold;
-        #endregion
-
-        #region Constructor
+       
         public AutoCompleteTextBox()
         {
-            controls = new VisualCollection(this);
+            _controls = new VisualCollection(this);
             InitializeComponent();
 
-            autoCompletionList = new ObservableCollection<AutoCompleteEntry>();
-            searchThreshold = 2;        // default threshold to 2 char
+            _autoCompletionList = new ObservableCollection<AutoCompleteEntry>();
+            _searchThreshold = 2;        // default threshold to 2 char
 
             // set up the key press timer
-            keypressTimer = new System.Timers.Timer();
-            keypressTimer.Elapsed += new System.Timers.ElapsedEventHandler(OnTimedEvent);
+            _keypressTimer = new System.Timers.Timer();
+            _keypressTimer.Elapsed += OnTimedEvent;
 
             // set up the text box and the combo box
-            comboBox = new ComboBox();
-            comboBox.IsSynchronizedWithCurrentItem = true;
-            comboBox.IsTabStop = false;
-            comboBox.SelectionChanged += new SelectionChangedEventHandler(comboBox_SelectionChanged);
+            ComboBox = new ComboBox
+            {
+                IsSynchronizedWithCurrentItem = true, 
+                IsTabStop = false
+            };
 
-            textBox = new TextBox();
-            textBox.TextChanged += new TextChangedEventHandler(textBox_TextChanged);
-            textBox.VerticalContentAlignment = VerticalAlignment.Center;
+            ComboBox.SelectionChanged += comboBox_SelectionChanged;
 
-            controls.Add(comboBox);
-            controls.Add(textBox);
+            _textBox = new TextBox();
+            _textBox.TextChanged += textBox_TextChanged;
+            _textBox.VerticalContentAlignment = VerticalAlignment.Center;
+
+            _controls.Add(ComboBox);
+            _controls.Add(_textBox);
         }
-        #endregion
-
-        #region Methods
+        
+        private VisualCollection _controls;
+        private TextBox _textBox;
+        public ComboBox ComboBox;
+        private ObservableCollection<AutoCompleteEntry> _autoCompletionList;
+        private System.Timers.Timer _keypressTimer;
+        private delegate void TextChangedCallback();
+        private bool _insertText;
+        private int _delayTime;
+        private int _searchThreshold;
+        
         public string Text
         {
             get
             {
-                    return textBox.Text;
+                    return _textBox.Text;
             }
             set 
             {
-                insertText = true;
-                textBox.Text = value;
-                CampahApp.RunningData.Instance.CurrentItemText = value;
+                _insertText = true;
+                _textBox.Text = value;
+                RunningData.Instance.CurrentItemText = value;
             }
         }
 
         public int DelayTime
         {
-            get { return delayTime; }
-            set { delayTime = value; }
+            get { return _delayTime; }
+            set { _delayTime = value; }
         }
 
         public int Threshold
         {
-            get { return searchThreshold; }
-            set { searchThreshold = value; }
+            get { return _searchThreshold; }
+            set { _searchThreshold = value; }
         }
 
         public void AddItem(AutoCompleteEntry entry)
         {
-            autoCompletionList.Add(entry);
+            _autoCompletionList.Add(entry);
         }
 
         public void ClearList()
         {
-            autoCompletionList.Clear();
+            _autoCompletionList.Clear();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (null != comboBox.SelectedItem)
+            if (null != ComboBox.SelectedItem)
             {
-                insertText = true;
-                ComboBoxItem cbItem = (ComboBoxItem)comboBox.SelectedItem;
-                textBox.Text = cbItem.Content.ToString();
+                _insertText = true;
+                var cbItem = (ComboBoxItem)ComboBox.SelectedItem;
+                _textBox.Text = cbItem.Content.ToString();
             }
         }
 
@@ -113,74 +104,82 @@ namespace WPFAutoCompleteTextbox
         {
             try
             {
-                comboBox.Items.Clear();
-                if (textBox.Text.Length >= searchThreshold)
+                ComboBox.Items.Clear();
+                if (_textBox.Text.Length >= _searchThreshold)
                 {
-                    foreach (AutoCompleteEntry entry in autoCompletionList)
+                    foreach (var entry in _autoCompletionList)
                     {
-                        foreach (string word in entry.KeywordStrings)
+                        if (
+                            entry.KeywordStrings.Any(
+                                word => word.StartsWith(_textBox.Text, StringComparison.CurrentCultureIgnoreCase)))
                         {
-                            if (word.StartsWith(textBox.Text, StringComparison.CurrentCultureIgnoreCase))
+                            var cbItem = new ComboBoxItem
                             {
-                                ComboBoxItem cbItem = new ComboBoxItem();
-                                cbItem.Content = entry.ToString();
-                                comboBox.Items.Add(cbItem);
-                                break;
-                            }
+                                Content = entry.ToString()
+                            };
+                            ComboBox.Items.Add(cbItem);
                         }
                     }
-                    comboBox.IsDropDownOpen = comboBox.HasItems;
+                    ComboBox.IsDropDownOpen = ComboBox.HasItems;
                 }
                 else
                 {
-                    comboBox.IsDropDownOpen = false;
+                    ComboBox.IsDropDownOpen = false;
                 }
             }
-            catch { }
+            catch(Exception e)
+            {
+                Debug.WriteLine(e);
+            }
         }
 
         private void OnTimedEvent(object source, System.Timers.ElapsedEventArgs e)
         {
-            keypressTimer.Stop();
-            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal,
-                new TextChangedCallback(this.TextChanged));
+            _keypressTimer.Stop();
+            Dispatcher.BeginInvoke(System.Windows.Threading.DispatcherPriority.Normal, new TextChangedCallback(TextChanged));
         }
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            CampahApp.RunningData.Instance.CurrentItemText = textBox.Text;
+            RunningData.Instance.CurrentItemText = _textBox.Text;
             // text was not typed, do nothing and consume the flag
-            if (insertText == true) insertText = false;
+            if (_insertText)
+            {
+                _insertText = false;
+            }
             
             // if the delay time is set, delay handling of text changed
             else
             {
-                if (delayTime > 0)
+                if (_delayTime > 0)
                 {
-                    keypressTimer.Interval = delayTime;
-                    keypressTimer.Start();
+                    _keypressTimer.Interval = _delayTime;
+                    _keypressTimer.Start();
                 }
-                else TextChanged();
+                else
+                {
+                    TextChanged();
+                }
             }
-            CampahApp.CurrentSelection.Name = textBox.Text;
+
+            CurrentSelection.Name = _textBox.Text;
         }
 
         protected override Size ArrangeOverride(Size arrangeSize)
         {
-            textBox.Arrange(new Rect(arrangeSize));
-            comboBox.Arrange(new Rect(arrangeSize));
+            _textBox.Arrange(new Rect(arrangeSize));
+            ComboBox.Arrange(new Rect(arrangeSize));
             return base.ArrangeOverride(arrangeSize);
         }
 
         protected override Visual GetVisualChild(int index)
         {
-            return controls[index];
+            return _controls[index];
         }
 
         protected override int VisualChildrenCount
         {
-            get { return controls.Count; }
+            get { return _controls.Count; }
         }
-        #endregion
     }
 }

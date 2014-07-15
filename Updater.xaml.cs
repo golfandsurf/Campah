@@ -1,24 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Diagnostics;
-using System.Windows.Input;
-using System.Windows.Navigation;
 using System.Windows.Threading;
-using System.Windows.Shapes;
 using System.Xml;
 using System.Net;
-using System.Runtime.Serialization;
-using System.ComponentModel;
-using System.IO.Compression;
 using System.IO;
 using SharpCompress.Archive;
-using SharpCompress.Reader;
 
 namespace CampahApp
 {
@@ -27,29 +17,36 @@ namespace CampahApp
     /// </summary>
     public partial class Updater : Window
     {
-        System.Windows.Threading.DispatcherTimer worker;
-        StreamReader Info;
+        DispatcherTimer worker;
+        StreamReader _info;
         public Updater()
         {
             InitializeComponent();
         }
 
         public delegate void ChangeTextBoxDelegate(String NewText);
+
+        public string Arg2
+        {
+            get { return _arg2; }
+            set { _arg2 = value; }
+        }
+
         public void ChangeTextBox(String NewText)
         {
             UpdateData.Instance.Status += "\r\n" + NewText;
-            tb_update.InvalidateVisual();
+            TbUpdate.InvalidateVisual();
         }
 
-        public void addText(String text)
+        public void addText(string text)
         {
-            this.Dispatcher.BeginInvoke(new ChangeTextBoxDelegate(ChangeTextBox), new object[] { text });
+            Dispatcher.BeginInvoke(new ChangeTextBoxDelegate(ChangeTextBox), new object[] { text });
         }
 
         public Updater(StreamReader cu)
         {
             InitializeComponent();
-            Info = cu;
+            _info = cu;
             addText("Downloading version information...");
             if (!CheckUpdate())
             {
@@ -74,7 +71,7 @@ namespace CampahApp
         {
             working = true;
             //CloseProcesses();
-            DirectoryInfo TempDir = new DirectoryInfo(UpdateData.Instance.RelPath);
+            var TempDir = new DirectoryInfo(UpdateData.Instance.RelPath);
             if (DownloadUpdate(TempDir))
             {
                 addText("Downloaded Complete.");
@@ -87,30 +84,19 @@ namespace CampahApp
             addText("Unpacking update package...");
             DoFileUpdate(TempDir.FullName, string.Format("{0}\\Package", TempDir.FullName));
             //RemoveOldFiles(TempDir.FullName);
-            arg2 = TempDir.FullName;
+            Arg2 = TempDir.FullName;
             UpdateData.Instance.Completed = true;
             RestartMainApp();
             
         }
-        String arg2 = "";
 
-        private void CloseProcesses()
-        {
-            
-            Process[] ps = Process.GetProcessesByName("Campah");
-            List<Process> p = new List<Process>();
-            foreach (Process process in ps)
-            {
-                process.CloseMainWindow();
-            }
-            
-        }
+        private String _arg2 = "";
 
         public bool CheckUpdate()
         {
             try
             {
-                HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(UpdateData.Instance.URL + "update.txt");
+                HttpWebRequest req = (HttpWebRequest)System.Net.WebRequest.Create(UpdateData.Instance.Url + "update.txt");
                 HttpWebResponse response = (HttpWebResponse)req.GetResponse();
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
@@ -134,17 +120,14 @@ namespace CampahApp
         {
             try
             {
-                WebClient Client = new WebClient();
+                var Client = new WebClient();
                 if (!TempDir.Exists)
-                    TempDir.Create();
-                addText(UpdateData.Instance.URL + UpdateData.Instance.File);
-                Client.DownloadFile(UpdateData.Instance.URL + UpdateData.Instance.File, string.Format("{0}\\Package", TempDir.FullName));
-                if (DTHasher.GetMD5Hash(string.Format("{0}\\Package", TempDir.FullName)) == UpdateData.Instance.Hash)
                 {
-                    return true;
+                    TempDir.Create();
                 }
-                else
-                    return false;
+                addText(UpdateData.Instance.Url + UpdateData.Instance.File);
+                Client.DownloadFile(UpdateData.Instance.Url + UpdateData.Instance.File, string.Format("{0}\\Package", TempDir.FullName));
+                return DTHasher.GetMD5Hash(string.Format("{0}\\Package", TempDir.FullName)) == UpdateData.Instance.Hash;
             }
             catch
             {
@@ -153,10 +136,10 @@ namespace CampahApp
         }
 
 
-        private void DoFileUpdate(string TempPath, string Package)
+        private void DoFileUpdate(string tempPath, string package)
         {
-            List<string> FilesToReplace = new List<string>();
-            IArchive archive = ArchiveFactory.Open(Package, SharpCompress.Common.Options.KeepStreamsOpen);
+            var filesToReplace = new List<string>();
+            IArchive archive = ArchiveFactory.Open(package, SharpCompress.Common.Options.KeepStreamsOpen);
             bool HaveUpdateFile = false;
             foreach (var entry in archive.Entries)
             {
@@ -164,8 +147,8 @@ namespace CampahApp
                 {
                     if (entry.FilePath.ToLower().Contains("update.xml"))
                     {
-                        entry.WriteToDirectory(TempPath, SharpCompress.Common.ExtractOptions.Overwrite);
-                        FilesToReplace = this.GetFilesToReplace(new FileInfo(string.Format("{0}\\Update.xml", TempPath)).OpenRead());
+                        entry.WriteToDirectory(tempPath);
+                        filesToReplace = GetFilesToReplace(new FileInfo(string.Format("{0}\\Update.xml", tempPath)).OpenRead());
                         HaveUpdateFile = true;
                     }
                 }
@@ -177,20 +160,20 @@ namespace CampahApp
                 {
                     if (!entry.IsDirectory)
                     {
-                        FileInfo OldFile = new FileInfo(entry.FilePath);
-                        /*if in update.xml or doesn't exist and isn't the update.xml*/
-                        if (FilesToReplace.Contains(entry.FilePath) || !(OldFile.Exists) && !(entry.FilePath.ToLower().Contains("update.xml")))
+                        var oldFile = new FileInfo(entry.FilePath);
+
+                        // if in update.xml or doesn't exist and isn't the update.xml
+                        if (filesToReplace.Contains(entry.FilePath) || !(oldFile.Exists) && !(entry.FilePath.ToLower().Contains("update.xml")))
                         {
                             addText(string.Format("Updating file [{0}]", entry.FilePath));
-//                            Debug.WriteLine(string.Format("DoFileUpdate -> Update.xml = TRUE; Replacing {0}", entry.FilePath));
 
-                            if (OldFile.Exists && !File.Exists(OldFile.FullName + ".old"))
+
+                            if (oldFile.Exists && !File.Exists(oldFile.FullName + ".old"))
                             {
-                                OldFile.MoveTo(string.Format("{0}.old", OldFile.Name));
+                                oldFile.MoveTo(string.Format("{0}.old", oldFile.Name));
                                 entry.WriteToDirectory(".\\", SharpCompress.Common.ExtractOptions.Overwrite | SharpCompress.Common.ExtractOptions.ExtractFullPath);
                             }
-                            //else
-                                //fail
+                            
                         }
                     }
                 }
@@ -219,28 +202,29 @@ namespace CampahApp
 
         public void RemoveOldFiles(String UpdateFileDir)
         {
-            /*
-                Root directory
-                Note: foreach is slow, may need to replace with for
-             */
-            DirectoryInfo RootDirectory = new DirectoryInfo(Environment.CurrentDirectory);
-            foreach (FileInfo OldFile in RootDirectory.GetFiles("*.old"))
-                OldFile.Delete();
-            /*Sub directories*/
-            foreach (DirectoryInfo Directory in RootDirectory.GetDirectories())
+            var rootDirectory = new DirectoryInfo(Environment.CurrentDirectory);
+
+            foreach (var oldFile in rootDirectory.GetFiles("*.old"))
             {
-                foreach (FileInfo OldFile in Directory.GetFiles("*.old"))
-                    OldFile.Delete();
-                /*Delete our temp directory*/
-                if (Directory.FullName == UpdateFileDir)
+                oldFile.Delete();
+            }
+            
+            foreach (var directory in rootDirectory.GetDirectories())
+            {
+                foreach (var oldFile in directory.GetFiles("*.old"))
+                {
+                    oldFile.Delete();
+                }
+
+                // Delete our temp directory
+                if (directory.FullName == UpdateFileDir)
                 {
                     try
                     {
-                        Directory.Delete(true);
+                        directory.Delete(true);
                     }
                     catch (IOException)
                     {
-                        continue;
                     }
                 }
             }
@@ -248,8 +232,10 @@ namespace CampahApp
 
         private void RestartMainApp()
         {
-            if ((bool)cb_closewhencomplete.IsChecked)
-                this.Close();
+            if ((bool) CbClosewhencomplete.IsChecked)
+            {
+                Close();
+            }
         }
 
         void MainContainer_Loaded(object sender, RoutedEventArgs e)
@@ -259,29 +245,26 @@ namespace CampahApp
 
         private List<string> GetFilesToReplace(Stream AutoUpdateFile)
         {
-            XmlDocument xDoc = new XmlDocument();
+            var xDoc = new XmlDocument();
             xDoc.Load(AutoUpdateFile);
-            XmlNodeList Files;
-            Files = xDoc.GetElementsByTagName("File");
-            List<string> Result = new List<string>();
-            foreach (XmlNode File in Files)
-            {
-                Result.Add(File.Attributes["Filename"].Value);
-            }
+            XmlNodeList Files = xDoc.GetElementsByTagName("File");
+            var result = (from XmlNode File in Files select File.Attributes["Filename"].Value).ToList();
             AutoUpdateFile.Close();
-            return Result;
+            return result;
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            TextBox tb = (TextBox)sender;
+            var tb = (TextBox)sender;
             if (!tb.IsMouseOver)
+            {
                 tb.ScrollToEnd();
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            ProcessStartInfo info = new ProcessStartInfo();
+            var info = new ProcessStartInfo();
             info.FileName = "Campah.exe";
             info.Arguments = "updated " + Process.GetCurrentProcess().Id; //+arg2;
             Process.Start(info);
@@ -289,104 +272,7 @@ namespace CampahApp
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
-        }
-    }
-    
-    public class UpdateData : INotifyPropertyChanged
-    {
-        private String name;
-        private String comment;
-        public String File { get; set; }
-        public String RelPath { get; set; }
-        public String URL { get; set; }
-        public String Hash { get; set; }
-        public String Version { get; set; }
-        private String status;
-        private bool completed;
-
-        public static UpdateData Instance { get; private set; }
-
-        static UpdateData()
-        {
-            Instance = new UpdateData();
-        }
-
-        public UpdateData()
-        {
-            name = "";
-            comment = "";
-            File = "";
-            RelPath = UpdateConstants.UPDATE_FOLDER;
-            status = "Beginning Update";
-            completed = false;
-            URL = UpdateConstants.UPDATE_URL;
-        }
-
-
-
-        public String Name
-        {
-            get
-            {
-                return name;
-            }
-            set
-            {
-                name = value;
-                NotifyPropertyChanged("Name");
-            }
-        }
-
-        public bool Completed
-        {
-            get
-            {
-                return completed;
-            }
-            set
-            {
-                completed = value;
-                NotifyPropertyChanged("Completed");
-            }
-        }
-
-        public String Status
-        {
-            get
-            {
-                return status;
-            }
-            set
-            {
-                status = value;
-                NotifyPropertyChanged("Status");
-            }
-        }
-
-        public String Comment
-        {
-            get
-            {
-                return comment;
-            }
-            set
-            {
-                comment = value;
-                NotifyPropertyChanged("Comment");
-            }
-        }
-
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,
-                    new PropertyChangedEventArgs(propertyName));
-            }
+            Close();
         }
     }
 

@@ -1,14 +1,11 @@
-﻿using System; 
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Text.RegularExpressions;
 
-namespace PandyProductions
+namespace CampahApp
 {
     public class BinSearch
     {
-        public static byte wildcard = 63; //?
+        public static byte Wildcard = 63; //?
 
         /// <summary>
         /// Searches the buffer for the given hex string and returns the pointer matching the first wildcard location, or the pointer following the pattern if not using wildcards.
@@ -56,31 +53,25 @@ namespace PandyProductions
             }
 
             //convert the signature text to a binary array
-            byte[] pattern = SigToByte(signature, wildcard);
+            byte[] pattern = SigToByte(signature, Wildcard);
             if (pattern != null)
             {
                 //Find the start index of the first wildcard. if no wildcards then the bytes following the match
-                int pos = 0;
+                int pos;
                 for (pos = 0; pos < pattern.Length; pos++)
                 {
-                    if (pattern[pos] == wildcard)
+                    if (pattern[pos] == Wildcard)
                         break;
                 }
 
                 //Search for the pattern in the buffer. Convert the bytes to an int and return as a pointer
-                int idx = -1;
-                if (pos == pattern.Length)
-                {
-                    idx = Horspool(buffer, pattern); //if not using wildcards then use the faster horspool algorithim
-                }
-                else
-                {
-                    idx = BNDM(buffer, pattern, wildcard);
-                }
+                int idx = pos == pattern.Length ? Horspool(buffer, pattern) : Bndm(buffer, pattern, Wildcard);
 
                 //if the sig was not found then exit
                 if (idx < 0)
+                {
                     return IntPtr.Zero;
+                }
 
                 //Grab the 4 byte pointer at the location requested
                 switch (control)
@@ -111,18 +102,17 @@ namespace PandyProductions
         /// <param name="pattern">The needle to locate</param>
         /// <param name="wildcard">The byte to treat as a wildcard character. Note that this only matches one char for one char and does not expand.</param>
         /// <returns>The index the pattern was found at, or -1 if not found</returns>
-        public static int BNDM(byte[] buffer, byte[] pattern, byte wildcard)
+        public static int Bndm(byte[] buffer, byte[] pattern, byte wildcard)
         {
             //This code is based on: 
             //   http://johannburkard.de/software/stringsearch/
             //   http://www-igm.univ-mlv.fr/~lecroq/string/bndm.html
 
-            int d, j, pos, last;
             int end = pattern.Length < 32 ? pattern.Length : 32;
-            int[] b = new int[256];
+            var b = new int[256];
 
             //Pre-process
-            j = 0;
+            int j = 0;
             for (int i = 0; i < end; ++i)
             {
                 if (pattern[i] == wildcard)
@@ -144,13 +134,13 @@ namespace PandyProductions
             }
 
             //Perform search
-            pos = 0;
+            int pos = 0;
 
             while (pos <= buffer.Length - pattern.Length)
             {
                 j = pattern.Length - 1;
-                last = pattern.Length;
-                d = -1;
+                int last = pattern.Length;
+                int d = -1;
                 while (d != 0)
                 {
                     d &= b[buffer[pos + j]];
@@ -178,8 +168,8 @@ namespace PandyProductions
         {
             //Based on: http://www-igm.univ-mlv.fr/~lecroq/string/node18.html
 
-            int[] bcs = new int[256];
-            int scan = 0;
+            var bcs = new int[256];
+            int scan;
 
             //Build the Bad Char Skip table
             for (scan = 0; scan < 256; scan = scan + 1)
@@ -212,27 +202,27 @@ namespace PandyProductions
         /// <summary>
         /// Convert a hex string to a binary array while preserving any wildcard characters.
         /// </summary>
-        /// <param name="Signature">A hex string "signature"</param>
+        /// <param name="signature">A hex string "signature"</param>
         /// <param name="wildcard">The byte to treat as the wildcard</param>
         /// <returns>The converted binary array. Null if the conversion failed.</returns>
-        public static byte[] SigToByte(string Signature, byte wildcard)
+        public static byte[] SigToByte(string signature, byte wildcard)
         {
-            byte[] pattern = new byte[Signature.Length / 2];
-            int[] HexTable = new int[] { 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
+            var pattern = new byte[signature.Length / 2];
+            var hexTable = new[] { 0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
                                    0x08,0x09,0x00,0x00,0x00,0x00,0x00,0x00,
                                    0x00,0x0A,0x0B,0x0C,0x0D,0x0E,0x0F };
 
             try
             {
-                for (int x = 0, i = 0; i < Signature.Length; i += 2, x += 1)
+                for (int x = 0, i = 0; i < signature.Length; i += 2, x += 1)
                 {
-                    if (Signature[i] == wildcard)
+                    if (signature[i] == wildcard)
                     {
                         pattern[x] = wildcard;
                     }
                     else
                     {
-                        pattern[x] = (byte)(HexTable[Char.ToUpper(Signature[i]) - '0'] << 4 | HexTable[Char.ToUpper(Signature[i + 1]) - '0']);
+                        pattern[x] = (byte)(hexTable[Char.ToUpper(signature[i]) - '0'] << 4 | hexTable[Char.ToUpper(signature[i + 1]) - '0']);
                     }
                 }
                 return pattern;

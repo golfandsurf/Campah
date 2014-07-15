@@ -9,9 +9,12 @@ namespace CampahApp
     class ThreadManager
     {
         static List<ThreadStart> Methods = new List<ThreadStart>();
-        public static void stopThread(ThreadStart method)
+
+        static List<Thread> Threads = new List<Thread>();
+
+        public static void StopThread(ThreadStart method)
         {
-            int i = 0;
+            int i;
             for (i = 0; i <= Methods.Count - 1; i++)
             {
                 if (Methods[i].Method.Name == method.Method.Name)
@@ -22,19 +25,21 @@ namespace CampahApp
                 }
             }
         }
-
-        static List<Thread> Threads = new List<Thread>();
-        public static void threadRunner(ThreadStart method)
+        
+        public static void ThreadRunner(ThreadStart method)
         {
-            Thread TH = new Thread(method);
-            TH.IsBackground = true;
-            TH.Start();
-            if (TH.IsAlive)
+            var th = new Thread(method)
             {
-                Threads.Add(TH);
+                IsBackground = true
+            };
+
+            th.Start();
+            
+            if (th.IsAlive)
+            {
+                Threads.Add(th);
                 Methods.Add(method);
             }
         }
-
     }
 }

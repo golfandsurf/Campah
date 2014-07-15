@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using FFACETools;
 using System.Text.RegularExpressions;
@@ -10,7 +10,7 @@ namespace CampahApp
 {
     class Interaction
     {
-        Stack<int> CurrentAddress = new Stack<int>();
+        Stack<int> _currentAddress = new Stack<int>();
 
         private int[] ReadAHItems()
         {
@@ -31,7 +31,7 @@ namespace CampahApp
         {
             GotoMenu(address);
             Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-            if (FFACE_INSTANCE.Instance.Menu.Selection == "Bid")
+            if (FFACEInstance.Instance.Menu.Selection == "Bid")
                 return true;
             int max = AuctionHouse.MenuLength;
 
@@ -42,9 +42,8 @@ namespace CampahApp
                     int[] ids = ReadAHItems();
                     foreach (int id in ids)
                     {
-                        //if (string.IsNullOrEmpty(FFACE.ParseResources.GetItemName(id)))
-                        //MessageBox.Show(id + " : " + FFACE.ParseResources.GetItemName(id));
-                        AHItem item = new AHItem(id, /*FFACE.ParseResources.GetItemName(id)*/id.ToString(), false, address + "," + i);
+                        
+                        var item = new AhItem(id, id.ToString(CultureInfo.InvariantCulture), false, address + "," + i);
                         if ((item = AuctionHouse.Add(item)) != null)
                         {
                             item.Stackable = true;
@@ -58,97 +57,93 @@ namespace CampahApp
 
         private bool GotoMenu(string address)
         {
-            if (address == "" || CurrentAddress.Count < 1)
+            if (address == "" || _currentAddress.Count < 1)
             {
                 GotoBidMenu();
                 if (address == "")
                     return false;
             }
-            string[] adrStr = address.Split(',');
-            int[] adr = new int[adrStr.Length];
+            var adrStr = address.Split(',');
+            var adr = new int[adrStr.Length];
             for (int i = 0; i < adrStr.Length; i++)
             {
                 adr[i] = int.Parse(adrStr[i]);
             }
-            while (CurrentAddress.Count > adr.Length)
+            while (_currentAddress.Count > adr.Length)
             {
-                CurrentAddress.Pop();
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
+                _currentAddress.Pop();
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
                 Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
             }
-            while (CurrentAddress.Count > 0 && !isMenuEqual(CurrentAddress.ToArray(), adr))
+            while (_currentAddress.Count > 0 && !IsMenuEqual(_currentAddress.ToArray(), adr))
             {
-                CurrentAddress.Pop();
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
+                _currentAddress.Pop();
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
                 Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
             }
-            for (int i = CurrentAddress.Count; i < adr.Length; i++)
+            for (int i = _currentAddress.Count; i < adr.Length; i++)
             {
-                String helptxt = FFACE_INSTANCE.Instance.Menu.Selection;
-                if (helptxt != "Bid")// && AuctionHouse.MenuLength >= adr[i])
+                var helptxt = FFACEInstance.Instance.Menu.Selection;
+                if (helptxt != "Bid")
                 {
-                    CurrentAddress.Push(adr[i]);
+                    _currentAddress.Push(adr[i]);
                     AuctionHouse.MenuIndex = adr[i];
-                    Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-                    FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.NP_EnterKey);
-                    Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
+                    Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
+                    FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.NP_EnterKey);
+                    Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
                 }
                 else
+                {
                     return false;
+                }
             }
             return true;
         }
 
-        private bool isMenuEqual(int[] a, int[] b)
+        private bool IsMenuEqual(int[] a, int[] b)
         {
-            for (int i = 0; i < a.Length; i++)
-                if (a[(a.Length - 1) - i] != b[i])
-                    return false;
-            return true;
+            return !a.Where((t, i) => a[(a.Length - 1) - i] != b[i]).Any();
         }
 
-        private bool istargetvalid(string currenttarget)
+        private bool IsTargetValid(string currenttarget)
         {
-            foreach (AHTarget target in RunningData.Instance.AHTargetList)
-                if (currenttarget == target.TargetName)
-                    return true;
-            return false;
+            return RunningData.Instance.AhTargetList.Any(target => currenttarget == target.TargetName);
         }
 
         private void GotoBidMenu()
         {
             CloseMenu();
-            while (!istargetvalid(FFACE_INSTANCE.Instance.Target.Name) || FFACE_INSTANCE.Instance.NPC.Distance((short)FFACE_INSTANCE.Instance.Target.ID) >= 6.0)
+            while (!IsTargetValid(FFACEInstance.Instance.Target.Name) || FFACEInstance.Instance.NPC.Distance((short)FFACEInstance.Instance.Target.ID) >= 6.0)
             {
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.TabKey);
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.TabKey);
                 Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
             }
-            FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.NP_EnterKey);
+            FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.NP_EnterKey);
             Thread.Sleep((int)CampahStatus.Instance.GlobalDelay * 4);
             AuctionHouse.MenuIndex = 1;
             Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-            FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.NP_EnterKey);
+            FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.NP_EnterKey);
             Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-            CurrentAddress.Clear();
-            CurrentAddress.Push(1);
+            _currentAddress.Clear();
+            _currentAddress.Push(1);
         }
 
         public void CloseMenu()
         {
-            while (FFACE_INSTANCE.Instance.Menu.IsOpen)
+            while (FFACEInstance.Instance.Menu.IsOpen)
             {
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
                 Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
             }
-            CurrentAddress.Clear();
+            _currentAddress.Clear();
         }
 
-        private int BidOnItem(ItemRequest item)
+        private void BidOnItem(ItemRequest item)
         {
-            if (FFACE_INSTANCE.Instance.Item.InventoryMax == FFACE_INSTANCE.Instance.Item.InventoryCount)
+            if (FFACEInstance.Instance.Item.InventoryMax == FFACEInstance.Instance.Item.InventoryCount)
                 StopBuying("Inventory Full");
             if (item.BoughtCount >= item.Quantity)
-                return 0;
+                return;
             {
                 string strstack = ".";
                 if (item.Stack)
@@ -158,7 +153,7 @@ namespace CampahApp
             if (!GotoMenu(item.ItemData.Address))
             {
                 GotoBidMenu();
-                return 0;
+                return;
             }
             Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
             int[] ids = ReadAHItems();
@@ -166,17 +161,19 @@ namespace CampahApp
             {
                 //StopBuying("Error! AH item array could not be read. Try zoning or logging out");
                 CampahStatus.SetStatus("Error! AH item array could not be read. Try zoning or logging out\r\n\t\tSkipping to the next item.");
-                return 0;
+                return;
             }
             int index = Array.IndexOf(ids, item.ItemData.ID) + 1;
             int stack = 0;
             if (item.Stack && item.ItemData.Stackable)
+            {
                 stack = 1;
+            }
             AuctionHouse.MenuIndex = index + stack;
             Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
             int bid;
             {
-                Regex parselowball = new Regex("[^0-9]*([0-9]+)(%)?.*");
+                var parselowball = new Regex("[^0-9]*([0-9]+)(%)?.*");
                 Match matches = parselowball.Match(CampahStatus.Instance.LowballBid);
                 int lowballamount;
                 if (matches.Groups.Count > 1 && !string.IsNullOrEmpty(matches.Groups[1].Value) && int.TryParse(matches.Groups[1].Value, out lowballamount))
@@ -200,7 +197,7 @@ namespace CampahApp
 
             while (bid <= item.Maximum && item.BoughtCount < item.Quantity)
             {
-                if (FFACE_INSTANCE.Instance.Item.InventoryMax == FFACE_INSTANCE.Instance.Item.InventoryCount)
+                if (FFACEInstance.Instance.Item.InventoryMax == FFACEInstance.Instance.Item.InventoryCount)
                     StopBuying("Inventory Full");
                 if (AuctionHouse.MenuIndex != index + stack)
                 {
@@ -208,71 +205,59 @@ namespace CampahApp
                     break;
                 }
 
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
                 AuctionHouse.MenuIndex = 2;
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay * 2);
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay*2);
                 if (!hasitems)
                 {
-                    if (FFACE_INSTANCE.Instance.Menu.Selection != "Price Set")
+                    if (FFACEInstance.Instance.Menu.Selection != "Price Set")
                     {
                         CampahStatus.Instance.Status = item.ItemData.Name + " is unavailble on AH, Skipping...";
-                        FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
-                        Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
+                        FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EscapeKey);
+                        Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
                         break;
                     }
-                    else
-                        hasitems = true;
+
+                    hasitems = true;
                 }
-                while (FFACE_INSTANCE.Instance.Menu.Selection != "Price Set")
+                while (FFACEInstance.Instance.Menu.Selection != "Price Set")
+                {
                     Thread.Sleep(250);
-                /*                if (FFACE_INSTANCE.Instance.Item.SelectedItemName.ToLower() != item.ItemData.Name.ToLower() ||
-                                    AuctionHouse.MenuIndex != index + stack)
-                                {
-                                    CampahStatus.Instance.Status = "Error: Mismatch IDs, Skipping...";
-                                    break;
-                                }
-                  */
+                }
+
                 AuctionHouse.BidValue = bid;
-                {
-                    string strstack = ".";
-                    if (item.Stack)
-                        strstack = " stack.";
-                    CampahStatus.Instance.Status = "Bidding " + bid + "g on " + item.ItemData.Name + strstack;
-                }
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
+CampahStatus.Instance.Status = string.Format("Bidding {0}g on {1}{2}", bid, item.ItemData.Name, item.Stack ? " stack." : ".");
+                
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
                 AuctionHouse.MenuIndex = 1;
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-                ChatAlert alert = new ChatAlert(new Regex(@".*You(.*)buy the .* for ([0-9,]*) gil\."), ChatMode.SynthResult);
-                Chatlog.Instance.addAlert(alert);
-                FFACE_INSTANCE.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
-                Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-                uint prev_inv_amount = FFACE_INSTANCE.Instance.Item.GetInventoryItemCount((ushort)item.ItemData.ID);
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
+                var alert = new ChatAlert(new Regex(@".*You(.*)buy the .* for ([0-9,]*) gil\."));
+                Chatlog.Instance.AddAlert(alert);
+                FFACEInstance.Instance.Windower.SendKeyPress(KeyCode.EnterKey);
+                Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
+                FFACEInstance.Instance.Item.GetInventoryItemCount((ushort) item.ItemData.ID);
+                var overrideAlert = false;
+                int time = 0;
+                while (!overrideAlert && !alert.Completed)
                 {
-                    bool override_alert = false;
-                    int time = 0;
-                    while (!override_alert && !alert.Completed)
-                    {
-                        Thread.Sleep((int)CampahStatus.Instance.GlobalDelay);
-                        time += (int)CampahStatus.Instance.GlobalDelay;
-                        if (time >= 20000)
-                            override_alert = true;
-                    }
-                    if (override_alert)
-                    {
-                        CampahStatus.SetStatus("An error occurred while parsing bid results\r\n\t\tRemoving item from bid list");
-                        item.BoughtCount = item.Quantity;
-                        break;
-                    }
+                    Thread.Sleep((int) CampahStatus.Instance.GlobalDelay);
+                    time += (int) CampahStatus.Instance.GlobalDelay;
+                    if (time >= 20000)
+                        overrideAlert = true;
                 }
-                //                Chatlog.Instance.ClearChatAlerts();
-                int curval = (int)FFACE_INSTANCE.Instance.Item.GetInventoryItemCount((ushort)item.ItemData.ID);
-                //                if (alert.Result == null)
-                //                    break;
+                if (overrideAlert)
+                {
+                    CampahStatus.SetStatus("An error occurred while parsing bid results\r\n\t\tRemoving item from bid list");
+                    item.BoughtCount = item.Quantity;
+                    break;
+                }
+               
+               
                 if (alert.Result.Groups[1].Value.Contains("unable"))
                 {
                     if (bid < item.Minimum)
@@ -283,21 +268,23 @@ namespace CampahApp
                         bid = item.Maximum;
                     firstbid = false;
                     if (bid <= item.Maximum)
+                    {
                         CampahStatus.Instance.Status = "Bid rejected, increasing bid to " + bid + "g.";
+                    }
                     else
+                    {
                         CampahStatus.Instance.Status = "Bid rejected, skipping to the next item...";
+                    }
                 }
-                //                else if(FFACE_INSTANCE.Instance.Item.GetInventoryItemCount((ushort)item.ItemData.ID) == prev_inv_amount)
-                //                {
-                //                    CampahStatus.SetStatus("Error! Could not detect buy result.");
-                //                    break;
-                //                }
+
                 else
                 {
-                    string strstack = "";
+                    var strstack = "";
                     if (item.Stack)
+                    {
                         strstack = " stack";
-                    CampahStatus.Instance.Status = "You bought the " + item.ItemData.Name + strstack + " for " + bid + "g.";
+                    }
+                    CampahStatus.Instance.Status = string.Format("You bought the {0}{1} for {2}g.", item.ItemData.Name, strstack, bid);
                     item.BoughtCount++;
                     item.BoughtCost += bid;
                     RunningData.Instance.TotalSpent += bid;
@@ -305,30 +292,26 @@ namespace CampahApp
                     {
                         bid -= item.Increment;
                         if (bid < 1)
+                        {
                             bid = 1;
+                        }
                     }
                 }
                 Chatlog.Instance.ClearChatAlerts();
             }
-            return item.BoughtCount;
-        }//
+        }
 
         public void StartBuying()
         {
             CampahStatus.Instance.Status = "Beginning Buy Procedure";
             CampahStatus.Instance.Mode = Modes.Buying;
-            RunningData.Instance.calculateProjectedCost();
+            RunningData.Instance.CalculateProjectedCost();
             RunningData.Instance.TotalSpent = 0;
             if (CampahStatus.Instance.BlockCommands)
             {
-                FFACE_INSTANCE.Instance.Windower.SendString("//mouse_blockinput;keyboard_blockinput;");
+                FFACEInstance.Instance.Windower.SendString("//mouse_blockinput;keyboard_blockinput;");
             }
-            ThreadManager.threadRunner(BuyProceedure);
-            /*
-            BuyThread = new Thread(BuyProceedure);
-            BuyThread.IsBackground = true;
-            BuyThread.Start();\
-             */
+            ThreadManager.ThreadRunner(BuyProceedure);
         }
 
         public void StopBuying()
@@ -349,19 +332,17 @@ namespace CampahApp
             Chatlog.Instance.ClearChatAlerts();
             if (CampahStatus.Instance.BlockCommands)
             {
-                FFACE_INSTANCE.Instance.Windower.SendString("//mouse_blockinput off;keyboard_blockinput off;");
+                FFACEInstance.Instance.Windower.SendString("//mouse_blockinput off;keyboard_blockinput off;");
             }
-            ThreadManager.stopThread(thread);
-            //if (thread.IsAlive)
-            //    thread.Abort();
+            ThreadManager.StopThread(thread);
         }
 
         private void StartWaitCycle(TimeSpan time)
         {
             if (CampahStatus.Instance.AllowCycleRandom)
             {
-                int seconds = (int)time.TotalSeconds;
-                Random rand = new Random();
+                var seconds = (int)time.TotalSeconds;
+                var rand = new Random();
                 seconds += rand.Next((int)(seconds * .1));
                 time = TimeSpan.FromSeconds(seconds);
             }
@@ -379,7 +360,8 @@ namespace CampahApp
         {
             while (RunningData.Instance.BidList.Count > 0 && CampahStatus.Instance.Mode == Modes.Buying)
             {
-                List<ItemRequest> trashcan = new List<ItemRequest>();
+                var trashcan = new List<ItemRequest>();
+
                 foreach (ItemRequest item in RunningData.Instance.BidList)
                 {
                     BidOnItem(item);

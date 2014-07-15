@@ -1,147 +1,127 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Documents;
-using System.Reflection;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Text;
 using FFACETools;
+using System.Windows.Media;
 
 namespace CampahApp
 {
-    class ChatAlert
-    {
-        private Regex Condition { get; set; }
-        public Match Result { get; private set; }
-        public bool Completed { get; private set; }
-        public ChatMode Mode { get; private set; }
-
-        public ChatAlert(Regex condition) : this(condition, ChatMode.Generic) { }
-        public ChatAlert(Regex condition, ChatMode mode)
-        {
-            Condition = condition;
-            Completed = false;
-        }
-       
-        public bool ParseLine(FFACE.ChatTools.ChatLine line)
-        {
-            Result = Condition.Match(line.Text);            
-            return (Completed = Condition.IsMatch(line.Text));
-        }
-    }
-
     class Chatlog : INotifyPropertyChanged
     {
-        //public static FFACE FFACE_INSTANCE.Instance { get; set; }
-        public List<FFACE.ChatTools.ChatLine> Lines;
-        public FlowDocument chatlog;
-        public static Chatlog Instance { get; private set; }
-        private List<ChatAlert> alerts;
-        private List<string> lasttells;
-        private List<ChatMode> filters;
         static Chatlog()
         {
             Instance = new Chatlog();
-                        
+
         }
         public Chatlog()
         {
-            Lines = new List<FFACE.ChatTools.ChatLine>();            
-            chatlog = new FlowDocument();
-            alerts = new List<ChatAlert>();
-            filters = new List<ChatMode>();
-            System.Windows.Threading.DispatcherTimer chatWorker = new System.Windows.Threading.DispatcherTimer();
-            chatWorker.Interval = TimeSpan.FromMilliseconds(100);
-            chatWorker.Tick += new EventHandler(chatWorker_Tick);
+            Lines = new List<FFACE.ChatTools.ChatLine>();
+            ChatLog = new FlowDocument();
+            _alerts = new List<ChatAlert>();
+            _filters = new List<ChatMode>();
+            var chatWorker = new System.Windows.Threading.DispatcherTimer
+            {
+                Interval = TimeSpan.FromMilliseconds(100)
+            };
+            chatWorker.Tick += ChatWorkerTick;
             chatWorker.Start();
-            lasttells = new List<string>();
-            //lasttell = "";
+            _lasttells = new List<string>();
         }
+
+        public List<FFACE.ChatTools.ChatLine> Lines { get; set; }
+
+        public FlowDocument ChatLog { get; set; }
+
+        public static Chatlog Instance { get; private set; }
+
+        private List<ChatAlert> _alerts;
+        private List<string> _lasttells;
+        private List<ChatMode> _filters;
+        
 
         public string LastTell(string name)
         {
-            if (lasttells.Count == 0)
-                return "";
-            return (lasttells[(lasttells.IndexOf(name)+1)%lasttells.Count]);
+            return _lasttells.Count == 0 ? "" : (_lasttells[(_lasttells.IndexOf(name)+1)%_lasttells.Count]);
         }
 
-        public void addAlert(ChatAlert alert)
+        public void AddAlert(ChatAlert alert)
         {
-            alerts.Add(alert);
+            _alerts.Add(alert);
         }
 
         public void ClearChatAlerts()
         {
-            alerts.Clear();
+            _alerts.Clear();
         }
 
-        public void removeAlert(ChatAlert alert)
+        public void RemoveAlert(ChatAlert alert)
         {
-            alerts.Remove(alert);
+            _alerts.Remove(alert);
         }
 
-        void chatWorker_Tick(object sender, EventArgs e)
+        void ChatWorkerTick(object sender, EventArgs e)
         {
             Update();
         }
 
-        private System.Windows.Media.Brush chatColorConverter(System.Drawing.Color chatColor)
+        private Brush ChatColorConverter(System.Drawing.Color chatColor)
         {
             return colorToBrush(chatColor);
         }
 
-        private bool isColorClose(System.Drawing.Color color1, System.Drawing.Color color2, int tolerance)
+        private Brush colorToBrush(System.Drawing.Color color)
         {
-            if (Math.Abs(color1.GetHue() - color2.GetHue()) % (360 - tolerance) < tolerance)
-                if (Math.Abs(color1.GetSaturation() - color2.GetSaturation()) % (360 - tolerance) < tolerance)
-                    if (Math.Abs(color1.GetBrightness() - color2.GetBrightness()) % (360 - tolerance) < tolerance)
-                        return true;
-            return false;
-        }
-
-        private System.Windows.Media.Brush colorToBrush(System.Drawing.Color color)
-        {
-            System.Windows.Media.BrushConverter bc = new System.Windows.Media.BrushConverter();
+            var bc = new BrushConverter();
             if (color.IsNamedColor)
             {
-                return (System.Windows.Media.Brush)bc.ConvertFromString(color.Name);
+                return (Brush)bc.ConvertFromString(color.Name);
             }
-            else
+
+            return (Brush)bc.ConvertFromString("#" + color.Name);
+        }
+
+        public void Rewrite()
+        {
+            ChatLog.Blocks.Clear();
+            foreach (var line in Lines)
             {
-                return (System.Windows.Media.Brush)bc.ConvertFromString("#" + color.Name);
+                AddLine(line);
             }
         }
 
-        public void rewrite()
+        private void AddLine(FFACE.ChatTools.ChatLine line)
         {
-            chatlog.Blocks.Clear();
-            foreach (FFACE.ChatTools.ChatLine line in Lines)
-            {
-                addline(line);
-            }
-        }
-
-        private void addline(FFACE.ChatTools.ChatLine line)
-        {
-            Paragraph para = new Paragraph();
-            //AuctionHouse.SetProcessMemoryReader();
+            var para = new Paragraph();
+            
             para = ProcessLine(line, para);
             if (para != null)
-                chatlog.Blocks.Add(para);
+            {
+                ChatLog.Blocks.Add(para);
+            }
         }
 
         public void Update()
         {
-            if (FFACE_INSTANCE.Instance == null)
+            if (FFACEInstance.Instance == null)
+            {
                 return;
-            if (chatlog.Blocks.Count > 1000)
-                while (chatlog.Blocks.Count > 500)
-                    chatlog.Blocks.Remove(chatlog.Blocks.FirstBlock);
+            }
+
+            if (ChatLog.Blocks.Count > 1000)
+            {
+                while (ChatLog.Blocks.Count > 500)
+                {
+                    ChatLog.Blocks.Remove(ChatLog.Blocks.FirstBlock);
+                }
+            }
+
             FFACE.ChatTools.ChatLine chatline;
-            List<FFACE.ChatTools.ChatLine> lines = new List<FFACE.ChatTools.ChatLine>();
-            while ((chatline = FFACE_INSTANCE.Instance.Chat.GetNextLine()) != null)
+            var lines = new List<FFACE.ChatTools.ChatLine>();
+
+            while ((chatline = FFACEInstance.Instance.Chat.GetNextLine()) != null)
             {
                 if (lines.Count > 0 && chatline.RawString[4] == lines[0].RawString[4])
                 {
@@ -151,9 +131,9 @@ namespace CampahApp
                 {
                     if (chatline.Type == ChatMode.RcvdTell)
                     {
-                        Regex findname = new Regex(@"(.*)>>.*");
-                        lasttells.Remove(findname.Matches(chatline.Text)[0].Groups[1].Value);
-                        lasttells.Insert(0, findname.Matches(chatline.Text)[0].Groups[1].Value);
+                        var findname = new Regex(@"(.*)>>.*");
+                        _lasttells.Remove(findname.Matches(chatline.Text)[0].Groups[1].Value);
+                        _lasttells.Insert(0, findname.Matches(chatline.Text)[0].Groups[1].Value);
                         //LastTell = findname.Matches(chatline.Text)[0].Groups[1].Value;
                     }
                     lines.Add(chatline);
@@ -166,9 +146,9 @@ namespace CampahApp
 
             foreach (FFACE.ChatTools.ChatLine line in lines)
             {
-                addline(line);
+                AddLine(line);
             }
-            foreach (ChatAlert alert in alerts)
+            foreach (ChatAlert alert in _alerts)
             {
                 foreach (FFACE.ChatTools.ChatLine line in lines)
                 {
@@ -186,16 +166,18 @@ namespace CampahApp
             rawstring = rawstring.ToLower().Replace(",yell,", ",RcvdYell,SentYell,").Replace(",party,", ",RcvdParty,SentParty,").Replace(",tell,", ",RcvdTell,SentTell,").Replace(",linkshell,", ",RcvdLinkShell,SentLinkShell,").Replace(",say,", ",RcvdSay,SentSay,").Replace(",shout,", ",RcvdShout,SentShout,").Replace(",emote,", ",RcvdEmote,SentEmote,");
             rawstring = rawstring.Substring(1, rawstring.Length - 2);
             string[] rawfilters = rawstring.Split(',');
-            filters.Clear();
+            _filters.Clear();
             foreach (string raw in rawfilters)
             {
                 //if (Enum.IsDefined(typeof(ChatMode), raw.Trim()))
-                Int16 chatcode = 1;
+                Int16 chatcode;
                 if (Int16.TryParse(raw,System.Globalization.NumberStyles.HexNumber,System.Globalization.CultureInfo.InvariantCulture, out chatcode) && Enum.IsDefined(typeof(ChatMode),chatcode))
-                    filters.Add((ChatMode)chatcode);
+                {
+                    _filters.Add((ChatMode)chatcode);
+                }
                 else if (Enum.GetNames(typeof(ChatMode)).Any(x => x.ToLower() == raw.Trim().ToLower()))
                 {
-                    filters.Add((ChatMode)Enum.Parse(typeof(ChatMode), raw.Trim(), true));
+                    _filters.Add((ChatMode)Enum.Parse(typeof(ChatMode), raw.Trim(), true));
                 }
                 else
                 {
@@ -203,37 +185,40 @@ namespace CampahApp
                     {
                         return;
                     }
-                    filters.Clear();
+                    _filters.Clear();
                 }
             }
-            rewrite();            
+            Rewrite();            
         }
      
 
         public Paragraph ProcessLine(FFACE.ChatTools.ChatLine chatline, Paragraph para)
         {
-            if (filters.Contains(chatline.Type) || filters.Count == 0)
+            if (para == null)
             {
-
-                TextRange range;
-                TextPointer EndOfPrefix = null; ;
-                para = new Paragraph();
-                range = new TextRange(para.ContentStart, para.ContentEnd);//log.Document.ContentEnd, log.Document.ContentEnd);
-                range.Text += "("+((int)chatline.Type).ToString("X2") + ")";
-                range.Text += chatline.Now;
-                //                    para.Inlines.Add(chatline.Now);
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, System.Windows.Media.Brushes.SteelBlue);
-                range.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
-                EndOfPrefix = range.End;
-
-                para.Inlines.Add(chatline.Text);
-                range = new TextRange(EndOfPrefix, para.ContentEnd);
-                range.ApplyPropertyValue(TextElement.ForegroundProperty, chatColorConverter(chatline.Color));
-                range.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
-                para.LineHeight = 0.5;
-                return para;
+                throw new ArgumentNullException("para");
             }
-            return null;
+
+            if (!_filters.Contains(chatline.Type) && _filters.Count != 0)
+            {
+                return null;
+            }
+
+            para = new Paragraph();
+            var range = new TextRange(para.ContentStart, para.ContentEnd);
+            range.Text += "("+((int)chatline.Type).ToString("X2") + ")";
+            range.Text += chatline.Now;
+            
+            range.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.SteelBlue);
+            range.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
+            var endOfPrefix = range.End;
+
+            para.Inlines.Add(chatline.Text);
+            range = new TextRange(endOfPrefix, para.ContentEnd);
+            range.ApplyPropertyValue(TextElement.ForegroundProperty, ChatColorConverter(chatline.Color));
+            range.ApplyPropertyValue(TextElement.FontWeightProperty, System.Windows.FontWeights.Bold);
+            para.LineHeight = 0.5;
+            return para;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;

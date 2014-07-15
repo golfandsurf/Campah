@@ -698,7 +698,7 @@
 		/// </summary>
 		CleanOthers = 64,
 		/// <summary>
-		/// Cleans TimeStamp plugin's addition to the chatlog.
+		/// Cleans TimeStamp plugin's addition to the _chatLog.
 		/// </summary>
 		CleanTimeStamp = 128,
 		/// <summary>
